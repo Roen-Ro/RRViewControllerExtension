@@ -47,9 +47,9 @@
 //            UIBarButtonItem *litm1 = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"L%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
 //            viewController.navigationItem.leftBarButtonItem = litm1;
             
-            UIBarButtonItem *ritm1 = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"R%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
-            UIBarButtonItem *ritm2 = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"R%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
-            viewController.navigationItem.rightBarButtonItems = @[ritm1,ritm2];
+            UIBarButtonItem *ritm = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"R%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
+
+            viewController.navigationItem.rightBarButtonItem = ritm;
             
             CommView *v = [[NSBundle mainBundle] loadNibNamed:@"CommView" owner:nil options:nil].firstObject;
             v.viewController = viewController;

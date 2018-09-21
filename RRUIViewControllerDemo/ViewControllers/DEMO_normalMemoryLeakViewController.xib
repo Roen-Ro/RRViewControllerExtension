@@ -23,7 +23,7 @@
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pge-5a-lvr">
                     <rect key="frame" x="118" y="457" width="139" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="present naked"/>
+                    <state key="normal" title="push Switchable"/>
                     <connections>
                         <action selector="presentNaked:" destination="-1" eventType="touchUpInside" id="EfX-Co-SIo"/>
                     </connections>

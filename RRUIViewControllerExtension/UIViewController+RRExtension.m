@@ -1,6 +1,6 @@
 //
 //  UIViewController+RRExtension.m
-//  Roen 2015.07
+//  Roen(罗亮富）zxllf23@163.com 2015.07
 
 #import "UIViewController+RRExtension.h"
 #import <objc/runtime.h>
@@ -50,7 +50,10 @@ __weak UIView *sMemleakWarningView;
         
 #if VC_MemoryLeakDetectionEnabled
         sVcLeakDetectionHashTable = [NSHashTable weakObjectsHashTable];
-        sVcLeakDetectionDefaultExceptions = [NSMutableSet setWithObjects:@"UIAlertController",@"_UIRemoteInputViewController", nil];
+        sVcLeakDetectionDefaultExceptions = [NSMutableSet setWithObjects:@"UIAlertController",
+                                             @"_UIRemoteInputViewController",
+                                             @"UICompatibilityInputViewController",
+                                             nil];
 #endif
         
 
@@ -361,22 +364,35 @@ __weak UIView *sMemleakWarningView;
 {
     __weak typeof(self) weak_self = self;
     UIViewController *popBackVc = nil;
-    if(weak_self.navigationController)
+    if(self.navigationController)
     {
         NSArray *viewControllers = weak_self.navigationController.viewControllers;
-        NSUInteger selfIndx = [viewControllers indexOfObject:weak_self];
+        NSUInteger selfIndx = NSNotFound;//
+        
+        UIViewController *tmpVc = self;
+        
+        //这个操作骚不骚？Coquettish operation 就这么叫吧
+        for(int i=0; i<1000; i++) //limit loop time to avoid dead loop
+        {
+            selfIndx = [viewControllers indexOfObject:tmpVc];
+            if(selfIndx != NSNotFound)
+                break;
+            
+            tmpVc = tmpVc.parentViewController;
+        }
+        
+        
         if(selfIndx > 0 && selfIndx != NSNotFound)
             popBackVc = [viewControllers objectAtIndex:selfIndx-1];
     }
     
     if(popBackVc)
     {
-        [weak_self.navigationController popToViewController:popBackVc animated:animate completionBlock:completion];
-      //  [weak_self.navigationController popViewControllerAnimated:animate completionBlock:completion];
+        [self.navigationController popToViewController:popBackVc animated:animate completionBlock:completion];
     }
-    else if(weak_self.presentingViewController || weak_self.navigationController.presentingViewController)
+    else if(self.presentingViewController || self.navigationController.presentingViewController)
     {
-        [weak_self dismissViewControllerAnimated:animate completion:completion];
+        [self dismissViewControllerAnimated:animate completion:completion];
     }
 }
 
@@ -389,8 +405,8 @@ __weak UIView *sMemleakWarningView;
     {
         return [self viewControllerShouldDismiss];
     }
-    
 }
+
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
     if(gestureRecognizer == self.navigationController.interactivePopGestureRecognizer)
@@ -403,8 +419,6 @@ __weak UIView *sMemleakWarningView;
 
 
 #pragma mark- memory leak detection
-
-
 
 -(void)detectMemoryLeak
 {

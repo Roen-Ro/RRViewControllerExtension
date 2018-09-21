@@ -28,6 +28,7 @@
 		9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */; };
 		9FF94A4D2154B77B00FC8F22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4C2154B77B00FC8F22 /* README.md */; };
 		9FF94A4F2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4E2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec */; };
+		9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RRExtension.m"; sourceTree = "<group>"; };
 		9FF94A4C2154B77B00FC8F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9FF94A4E2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRUIViewControllerExtension.podspec; sourceTree = "<group>"; };
+		9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchableViewController.h; sourceTree = "<group>"; };
+		9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +136,8 @@
 				9F73EB2A2150FFA50046B7D2 /* DEMO_HiddenNaviBarViewController.m */,
 				9F73EB32215100930046B7D2 /* DEMO_ImageNaviBarViewController.h */,
 				9F73EB33215100930046B7D2 /* DEMO_ImageNaviBarViewController.m */,
+				9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */,
+				9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */,
 				9F73EB3D215213C50046B7D2 /* DynamicConfig */,
 			);
 			path = ViewControllers;
@@ -252,6 +257,7 @@
 			files = (
 				9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */,
 				9FEF4CC32150F135009292EC /* CommView.m in Sources */,
+				9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */,
 				9F73EB042150ECCE0046B7D2 /* main.m in Sources */,
 				9FEF4CBF2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m in Sources */,
 				9F73EAF62150ECCE0046B7D2 /* AppDelegate.m in Sources */,

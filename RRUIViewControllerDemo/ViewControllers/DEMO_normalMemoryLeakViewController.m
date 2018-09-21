@@ -8,6 +8,10 @@
 
 #import "DEMO_normalMemoryLeakViewController.h"
 #import "RRUIViewControllerExtension.h"
+#import "SwitchableViewController.h"
+#import "DynamicConfigViewController.h"
+#import "DEMO_ImageNaviBarViewController.h"
+#import "DEMO_normalMemoryLeakViewController.h"
 
 //only for memmory leak test 仅用于vc内存泄露测试
 NSMutableArray *sVcMemLeakDebugArray;
@@ -21,12 +25,20 @@ static int sCreatedCount;
         sVcMemLeakDebugArray = [NSMutableArray array];
 }
 
-- (void)viewDidLoad
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    [super viewDidLoad];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     // Do any additional setup after loading the view.
     sCreatedCount++;
     self.title = [NSString stringWithFormat:@"Normal %d",sCreatedCount];
+    
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
     [sVcMemLeakDebugArray addObject:self];
 }
 
@@ -53,8 +65,19 @@ static int sCreatedCount;
 
 -(IBAction)presentNaked:(id)sender
 {
-    DEMO_normalMemoryLeakViewController *vc = [[DEMO_normalMemoryLeakViewController alloc] init];
-    [self presentViewController:vc animated:YES completion:nil];
+    DEMO_normalMemoryLeakViewController *vc1 = [[DEMO_normalMemoryLeakViewController alloc] init];
+    DEMO_ImageNaviBarViewController *vc2 = [[DEMO_ImageNaviBarViewController alloc] init];
+    vc2.title = @"img";
+    DynamicConfigViewController *vc3 = [[DynamicConfigViewController alloc] initWithNibName:@"DynamicConfigViewController" bundle:nil];
+    vc3.title = @"dyn";
+    
+    SwitchableViewController *svc = [[SwitchableViewController alloc] initWithViewControllers:@[vc1,vc2,vc3]];
+    
+    [self.navigationController pushViewController:svc animated:YES];
+    
+//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:svc];
+//
+//    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 -(IBAction)presentNavigationWrappedVc:(id)sender

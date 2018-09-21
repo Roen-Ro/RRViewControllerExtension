@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRUIViewControllerExtension"
-  s.version      = "1.0.4"
+  s.version      = "1.1.0"
   s.summary      = "UINavigation appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
