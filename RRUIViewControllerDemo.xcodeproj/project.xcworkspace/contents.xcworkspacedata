@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
-   <Group
-      location = "group:RRUIViewControllerExtension"
-      name = "RRUIViewControllerExtension">
-      <Group
-         location = "group:resources"
-         name = "resources">
-         <FileRef
-            location = "group:icon_button_return@2x.png">
-         </FileRef>
-      </Group>
-      <FileRef
-         location = "group:UINavigationController+RRSet.h">
-      </FileRef>
-      <FileRef
-         location = "group:UINavigationController+RRSet.m">
-      </FileRef>
-      <FileRef
-         location = "group:UIViewController+GlobalConfig.h">
-      </FileRef>
-      <FileRef
-         location = "group:UIViewController+GlobalConfig.m">
-      </FileRef>
-   </Group>
    <FileRef
       location = "self:">
    </FileRef>
