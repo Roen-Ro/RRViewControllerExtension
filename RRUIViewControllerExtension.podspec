@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRUIViewControllerExtension"
-  s.version      = "1.0.1"
+  s.version      = "1.0.4"
   s.summary      = "UINavigation appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
@@ -60,7 +60,7 @@ A lightweight UIViewController category extension for UINavigation  appearance m
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios
+  s.platform     = :ios, '8.0'
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
