@@ -15,6 +15,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithWhite:.88 alpha:1];
 }
 
 -(nullable UIImage *)preferredNavigationBarBackgroundImage

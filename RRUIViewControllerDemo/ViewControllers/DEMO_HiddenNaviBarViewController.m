@@ -24,10 +24,5 @@
     return YES;
 }
 
-#warning test
--(void)dealloc
-{
-    
-}
 
 @end

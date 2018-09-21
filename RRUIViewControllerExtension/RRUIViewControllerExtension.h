@@ -1,9 +1,8 @@
 //
 //  RRUIViewControllerExtension.h
-//  RRUIViewControllerDemo
 //
-//  Created by 罗亮富(Roen).
-//
+// Created by 罗亮富(Roen) zxllf23@163.com.
+// github:https://github.com/Roen-Ro/RRViewControllerExtension
 
 #ifndef RRUIViewControllerExtension_h
 #define RRUIViewControllerExtension_h

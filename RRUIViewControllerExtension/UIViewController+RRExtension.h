@@ -1,7 +1,7 @@
 //
 //  UIViewController+RRExtension.h
 //  created by Roen(罗亮富） On 2015.07 (zxllf23@163.com)
-// source: https://github.com/Roen-Ro/RRViewControllerExtension
+// github: https://github.com/Roen-Ro/RRViewControllerExtension
 
 #import <UIKit/UIKit.h>
 #import "UINavigationController+RRSet.h"
