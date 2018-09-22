@@ -138,6 +138,26 @@ hook any of the `UIViewController` life cycylcle method before or after executio
 
 ```
 
+## Installation
+
+To install using [CocoaPods](https://github.com/cocoapods/cocoapods), add the following to your project Podfile:
+
+```ruby
+pod 'RRUIViewControllerExtension'
+```
+and in your project file importing by:
+```objective-c
+#import <RRUIViewControllerExtension.h>
+```
+
+
+Alternatively, drag and drop RRUIViewControllerExtension directory from [this code project](https://github.com/Roen-Ro/RRViewControllerExtension) into your Xcode project, importing files by:
+
+```objective-c
+#import "RRUIViewControllerExtension.h"
+```
+
+
 
 ## Author
 
