@@ -82,7 +82,7 @@ static int sCreatedCount;
     DEMO_normalMemoryLeakViewController *vc = [[DEMO_normalMemoryLeakViewController alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
     navi.defaultNavatationBarColor = [UIColor greenColor];
-    navi.defaultNavigationTitleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor redColor] forKey:NSForegroundColorAttributeName];
+    navi.defaultNavigationTitleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor blueColor] forKey:NSForegroundColorAttributeName];
     [self presentViewController:navi animated:YES completion:nil];
 }
 

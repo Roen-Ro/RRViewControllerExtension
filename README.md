@@ -1,20 +1,20 @@
 # [RRUIViewControllerExtension](https://github.com/Roen-Ro/RRViewControllerExtension)
 
 
-A lightweight UIViewController category extension for UINavigation  appearance management, view controller push/pop/dismiss management, memory leak detection and other convenient property and methods. Benefits include:
+A lightweight UIViewController category extension for UINavigationBar  appearance management, view controller push/pop/dismiss management, memory leak detection and other convenient property and methods. Benefits include:
 
-- Manage navigation bar appearance gracefully
+- Manage `UINavigationBar` appearance gracefully
 - Automatic viewController memory leak detection with out any code modification.
 - Push/pop with completion block call back block
-- UIViewController life cycle method hook
+- `UIViewController` life cycle method hook
 - Other convenient properties
 
 Reference to [this demo](https://github.com/Roen-Ro/RRViewControllerExtension) on github
 
 ## Usage
 
-### Navigation appearance management
-make specific navigation bar appearance specific for each viewcontroller staticly or dynamicly just by overriding method of your viewcontroller, which are defined in `UIViewController+RRExtension.h`
+### `UINavigationBar` appearance management
+make specific `UINavigationBar`   bar appearance specific for each viewcontroller staticly or dynamicly just by overriding method of your viewcontroller, which are defined in `UIViewController+RRExtension.h`
 
 ```objective-c
 //override any of the methods below in your viewcontroller's .m file to make specific navigation bar appearance
@@ -27,7 +27,7 @@ make specific navigation bar appearance specific for each viewcontroller staticl
 -(nullable UIImage *)preferredNavigationBarBackgroundImage;
 -(nullable NSDictionary *)preferredNavigationTitleTextAttributes;
 ```
-Make navigation bar appearance dynamic change, call `[self updateNavigationAppearance:YES];`  in your viewcontroller's .m file to force the update.
+Make `UINavigationBar`   bar appearance dynamic change, call `[self updateNavigationAppearance:YES];`  in your viewcontroller's .m file to force the update.
 A typical example:
 
 ```objective-c

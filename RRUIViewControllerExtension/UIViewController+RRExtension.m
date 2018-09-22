@@ -253,7 +253,9 @@ __weak UIView *sMemleakWarningView;
     if(!backItem)
     {
         if(!backIndicatorImage)
-            backIndicatorImage = [[UIImage imageNamed:@"icon_button_return"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        {
+            backIndicatorImage = [[UIImage imageNamed:@"Resources.bundle/icon_button_return"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
         backItem = [[UIBarButtonItem alloc] initWithImage:backIndicatorImage style:UIBarButtonItemStylePlain target:self action:@selector(dismissBarButtonItemEventHandle:)];
         backItem.imageInsets = UIEdgeInsetsMake(0, -2, 0, -8);//
         objc_setAssociatedObject(self, @"backItem", backItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

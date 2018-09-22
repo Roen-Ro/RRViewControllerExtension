@@ -16,6 +16,7 @@
 		9F73EB362151018C0046B7D2 /* cusNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EB352151018C0046B7D2 /* cusNavigationBar@2x.png */; };
 		9F73EB412152242E0046B7D2 /* icon_apple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EB402152242E0046B7D2 /* icon_apple@2x.png */; };
 		9F73EB43215225540046B7D2 /* img_background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EB42215225540046B7D2 /* img_background.jpeg */; };
+		9FEF236721563FD400C4B33E /* Resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9FEF236621563FD400C4B33E /* Resources.bundle */; };
 		9FEF4CBF2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF4CBE2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m */; };
 		9FEF4CC32150F135009292EC /* CommView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC22150F135009292EC /* CommView.m */; };
 		9FEF4CC52150F164009292EC /* CommView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC42150F164009292EC /* CommView.xib */; };
@@ -23,7 +24,6 @@
 		9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC82150F4B8009292EC /* DynamicConfigViewController.xib */; };
 		9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A2321536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib */; };
 		9FF94A482154B76200FC8F22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A402154B76200FC8F22 /* README.md */; };
-		9FF94A492154B76200FC8F22 /* icon_button_return@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A422154B76200FC8F22 /* icon_button_return@2x.png */; };
 		9FF94A4A2154B76200FC8F22 /* UINavigationController+RRSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */; };
 		9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */; };
 		9FF94A4D2154B77B00FC8F22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4C2154B77B00FC8F22 /* README.md */; };
@@ -46,6 +46,7 @@
 		9F73EB352151018C0046B7D2 /* cusNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cusNavigationBar@2x.png"; sourceTree = "<group>"; };
 		9F73EB402152242E0046B7D2 /* icon_apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_apple@2x.png"; sourceTree = "<group>"; };
 		9F73EB42215225540046B7D2 /* img_background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img_background.jpeg; sourceTree = "<group>"; };
+		9FEF236621563FD400C4B33E /* Resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resources.bundle; sourceTree = "<group>"; };
 		9FEF4CBD2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMO_normalMemoryLeakViewController.h; sourceTree = "<group>"; };
 		9FEF4CBE2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMO_normalMemoryLeakViewController.m; sourceTree = "<group>"; };
 		9FEF4CC12150F135009292EC /* CommView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommView.h; sourceTree = "<group>"; };
@@ -56,7 +57,6 @@
 		9FEF4CC82150F4B8009292EC /* DynamicConfigViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DynamicConfigViewController.xib; sourceTree = "<group>"; };
 		9FF94A2321536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DEMO_normalMemoryLeakViewController.xib; sourceTree = "<group>"; };
 		9FF94A402154B76200FC8F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9FF94A422154B76200FC8F22 /* icon_button_return@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_button_return@2x.png"; sourceTree = "<group>"; };
 		9FF94A432154B76200FC8F22 /* RRUIViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRUIViewControllerExtension.h; sourceTree = "<group>"; };
 		9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+RRSet.h"; sourceTree = "<group>"; };
 		9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+RRSet.m"; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		9FF94A3F2154B76200FC8F22 /* RRUIViewControllerExtension */ = {
 			isa = PBXGroup;
 			children = (
-				9FF94A412154B76200FC8F22 /* resources */,
+				9FEF236621563FD400C4B33E /* Resources.bundle */,
 				9FF94A432154B76200FC8F22 /* RRUIViewControllerExtension.h */,
 				9FF94A402154B76200FC8F22 /* README.md */,
 				9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */,
@@ -165,14 +165,6 @@
 				9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */,
 			);
 			path = RRUIViewControllerExtension;
-			sourceTree = "<group>";
-		};
-		9FF94A412154B76200FC8F22 /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				9FF94A422154B76200FC8F22 /* icon_button_return@2x.png */,
-			);
-			path = resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,11 +228,11 @@
 				9F73EB412152242E0046B7D2 /* icon_apple@2x.png in Resources */,
 				9F73EB362151018C0046B7D2 /* cusNavigationBar@2x.png in Resources */,
 				9F73EB012150ECCE0046B7D2 /* LaunchScreen.storyboard in Resources */,
-				9FF94A492154B76200FC8F22 /* icon_button_return@2x.png in Resources */,
 				9F73EB43215225540046B7D2 /* img_background.jpeg in Resources */,
 				9FEF4CC52150F164009292EC /* CommView.xib in Resources */,
 				9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */,
 				9FF94A482154B76200FC8F22 /* README.md in Resources */,
+				9FEF236721563FD400C4B33E /* Resources.bundle in Resources */,
 				9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */,
 				9FF94A4F2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec in Resources */,
 				9FF94A4D2154B77B00FC8F22 /* README.md in Resources */,
