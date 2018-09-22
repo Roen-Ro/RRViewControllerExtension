@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "RRUIViewControllerExtension"
   s.version      = "1.2.0"
-  s.summary      = "UINavigation appearance management, memory leak detection, convenient UIViewController property and methods."
+  s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-A lightweight UIViewController category extension for UINavigation  appearance management, view controller push/pop/dismiss management, memory leak detection and other convenient property and methods.
+A lightweight UIViewController category extension for UINavigationBar appearance management, view controller push/pop/dismiss management, memory leak detection and other convenient property and methods.
                    DESC
 
   s.homepage     = "https://github.com/Roen-Ro/RRViewControllerExtension"
@@ -51,7 +51,7 @@ A lightweight UIViewController category extension for UINavigation  appearance m
   #  profile URL.
   #
 
-  s.author             = { "Roen" => "zxllf23@163.com" }
+  s.author             = { "罗亮富(Roen)" => "zxllf23@163.com" }
   s.social_media_url   = "https://twitter.com/RoenLuo"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -99,7 +99,7 @@ A lightweight UIViewController category extension for UINavigation  appearance m
   #  non-essential files like tests, examples and documentation.
   #
 
-  s.resource  = "RRUIViewControllerExtension/**/*"
+  s.resource  = "RRUIViewControllerExtension/resources/**/*"
 
   # s.resources = "Resources/*.png"
 
