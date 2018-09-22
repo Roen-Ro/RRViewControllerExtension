@@ -14,7 +14,7 @@ Reference to [this demo](https://github.com/Roen-Ro/RRViewControllerExtension) o
 ## Usage
 
 ### Navigation appearance management
-make specific navigation bar appearance specific for each viewcontroller staticly or dynamicly
+make specific navigation bar appearance specific for each viewcontroller staticly or dynamicly just by overriding method of your viewcontroller, which are defined in `UIViewController+RRExtension.h`
 
 ```objective-c
 //override any of the methods below in your viewcontroller's .m file to make specific navigation bar appearance
@@ -27,7 +27,8 @@ make specific navigation bar appearance specific for each viewcontroller staticl
 -(nullable UIImage *)preferredNavigationBarBackgroundImage;
 -(nullable NSDictionary *)preferredNavigationTitleTextAttributes;
 ```
-make navigation bar appearance dynamic change, call `[self updateNavigationAppearance:YES];`  in your viewcontroller's .m file to force the update
+Make navigation bar appearance dynamic change, call `[self updateNavigationAppearance:YES];`  in your viewcontroller's .m file to force the update.
+A typical example:
 
 ```objective-c
 
@@ -68,7 +69,7 @@ make navigation bar appearance dynamic change, call `[self updateNavigationAppea
 ```
 
 
-you should specify default navigation bar appearance by using `[[UINavigationBar appearance] setXXX:]` right after the app launch
+You can specify default `UINavigationBar`  appearance by using `[[UINavigationBar appearance] setXXX:]` globally.
 
 ```objective-c
 
@@ -78,6 +79,21 @@ NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor yellowColor] f
 [[UINavigationBar appearance] setTitleTextAttributes:dict];
 
 ```
+
+You can also specify the default  `UINavigationBar`  appearance for each `UINavigationController` instance by setting properties defined in `UINavigationController+RRSet.h`
+```objective-c
+
+// set default navigation bar appearance
+@property (nonatomic) BOOL defaultNavigationBarHidden;
+@property (nonatomic) BOOL defaultNavigationBarTransparent;
+
+@property (nonatomic,copy) UIColor *defaultNavatationBarColor;
+@property (nonatomic,copy) UIColor *defaultNavigationItemColor;
+@property (nonatomic,strong) UIImage *defaultNavigationBarBackgroundImage;
+@property (nonatomic,copy) NSDictionary *defaultNavigationTitleTextAttributes;
+
+```
+
 ### Memory leak detection
 to detect memory leak on runtime for viewcontrollers, all you have to do is just import the  `RRUIViewControllerExtension` to your project. whenever a memory leak happened, there will be a alert show on your app.
 ![](https://github.com/Roen-Ro/DemoResources/blob/master/RRUIViewControllerExtensio/memLeak01.png)

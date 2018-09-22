@@ -263,49 +263,51 @@ __weak UIView *sMemleakWarningView;
 
 -(UIColor *)preferredNavatationBarColor
 {
-    UIColor *c = [UINavigationBar appearance].barTintColor;
-//    if(!c)
-//        c = self.navigationController.navigationBar.barTintColor;
+    UIColor *c = self.navigationController.defaultNavatationBarColor;
+    if(!c)
+        c = [UINavigationBar appearance].barTintColor;
     
     return c;
 }
 
 -(UIColor *)preferredNavigationItemColor
 {
-    UIColor *c = [UINavigationBar appearance].tintColor;
-//    if(!c)
-//        c = self.navigationController.navigationBar.tintColor;
+    UIColor *c = self.navigationController.defaultNavigationItemColor;
+    if(!c)
+        c =  [UINavigationBar appearance].tintColor;
     
     return c;
 }
 
 -(NSDictionary *)preferredNavigationTitleTextAttributes
 {
-    NSDictionary *dic = [[UINavigationBar appearance] titleTextAttributes];
-//    if(!dic)
-//        dic = self.navigationController.navigationBar.titleTextAttributes;
+    NSDictionary *dic = self.navigationController.defaultNavigationTitleTextAttributes;
+    
+    if(!dic)
+        dic = [[UINavigationBar appearance] titleTextAttributes];
     
     return dic;
 }
 
 -(UIImage *)preferredNavigationBarBackgroundImage
 {
-    UIImage *img = [[UINavigationBar appearance] backgroundImageForBarMetrics:UIBarMetricsDefault];;
-//    if(!img)
-//        img = [self.navigationController.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
+    UIImage *img = self.navigationController.defaultNavigationBarBackgroundImage;
+
+    if(!img)
+        img = [[UINavigationBar appearance] backgroundImageForBarMetrics:UIBarMetricsDefault];
     
     return img;
 }
 
 -(BOOL)prefersNavigationBarTransparent
 {
-    return NO;
+    return self.navigationController.defaultNavigationBarTransparent;
 }
 
 
 -(BOOL)prefersNavigationBarHidden
 {
-    return NO;
+    return self.navigationController.defaultNavigationBarHidden;
 }
 
 -(BOOL)prefersNavigationBackItemHidden

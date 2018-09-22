@@ -75,15 +75,14 @@ static int sCreatedCount;
     
     [self.navigationController pushViewController:svc animated:YES];
     
-//    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:svc];
-//
-//    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 -(IBAction)presentNavigationWrappedVc:(id)sender
 {
     DEMO_normalMemoryLeakViewController *vc = [[DEMO_normalMemoryLeakViewController alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    navi.defaultNavatationBarColor = [UIColor greenColor];
+    navi.defaultNavigationTitleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor redColor] forKey:NSForegroundColorAttributeName];
     [self presentViewController:navi animated:YES completion:nil];
 }
 

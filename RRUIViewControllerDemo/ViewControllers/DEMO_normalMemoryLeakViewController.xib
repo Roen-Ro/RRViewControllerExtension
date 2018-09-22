@@ -20,20 +20,22 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pge-5a-lvr">
-                    <rect key="frame" x="118" y="457" width="139" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-54-Qiw">
+                    <rect key="frame" x="27" y="528" width="320" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Present default NavigationBar Green"/>
+                    <connections>
+                        <action selector="presentNavigationWrappedVc:" destination="-1" eventType="touchUpInside" id="Zn1-DT-unZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pge-5a-lvr">
+                    <rect key="frame" x="118" y="471" width="139" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.90736186939999997" green="1" blue="0.92335424030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <state key="normal" title="push Switchable"/>
                     <connections>
                         <action selector="presentNaked:" destination="-1" eventType="touchUpInside" id="EfX-Co-SIo"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5l-54-Qiw">
-                    <rect key="frame" x="92" y="511" width="191" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="present navigation wrapped"/>
-                    <connections>
-                        <action selector="presentNavigationWrappedVc:" destination="-1" eventType="touchUpInside" id="Zn1-DT-unZ"/>
                     </connections>
                 </button>
             </subviews>

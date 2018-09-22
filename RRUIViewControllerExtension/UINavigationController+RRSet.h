@@ -15,6 +15,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, getter = isNavigationBarTransparent) BOOL navigationBarTransparent;
 
+// set default navigation bar appearance
+@property (nonatomic) BOOL defaultNavigationBarHidden;
+@property (nonatomic) BOOL defaultNavigationBarTransparent;
+
+@property (nonatomic,copy) UIColor *defaultNavatationBarColor;
+@property (nonatomic,copy) UIColor *defaultNavigationItemColor;
+@property (nonatomic,strong) UIImage *defaultNavigationBarBackgroundImage;
+@property (nonatomic,copy) NSDictionary *defaultNavigationTitleTextAttributes;
 
 // pop/push with completion block call backs
 - (void)pushViewController:(UIViewController *)viewController
