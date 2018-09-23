@@ -8,7 +8,7 @@
 
 #import "CommView.h"
 #import "DynamicConfigViewController.h"
-#import "RRUIViewControllerExtension.h"
+#import "RRViewControllerExtension.h"
 
 @implementation CommView
 {

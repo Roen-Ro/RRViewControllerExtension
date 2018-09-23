@@ -27,7 +27,7 @@
 		9FF94A4A2154B76200FC8F22 /* UINavigationController+RRSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */; };
 		9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */; };
 		9FF94A4D2154B77B00FC8F22 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4C2154B77B00FC8F22 /* README.md */; };
-		9FF94A4F2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4E2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec */; };
+		9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */; };
 		9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -57,13 +57,13 @@
 		9FEF4CC82150F4B8009292EC /* DynamicConfigViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DynamicConfigViewController.xib; sourceTree = "<group>"; };
 		9FF94A2321536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DEMO_normalMemoryLeakViewController.xib; sourceTree = "<group>"; };
 		9FF94A402154B76200FC8F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9FF94A432154B76200FC8F22 /* RRUIViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRUIViewControllerExtension.h; sourceTree = "<group>"; };
+		9FF94A432154B76200FC8F22 /* RRViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRViewControllerExtension.h; sourceTree = "<group>"; };
 		9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+RRSet.h"; sourceTree = "<group>"; };
 		9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+RRSet.m"; sourceTree = "<group>"; };
 		9FF94A462154B76200FC8F22 /* UIViewController+RRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RRExtension.h"; sourceTree = "<group>"; };
 		9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RRExtension.m"; sourceTree = "<group>"; };
 		9FF94A4C2154B77B00FC8F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9FF94A4E2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRUIViewControllerExtension.podspec; sourceTree = "<group>"; };
+		9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRViewControllerExtension.podspec; sourceTree = "<group>"; };
 		9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchableViewController.h; sourceTree = "<group>"; };
 		9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,9 +82,9 @@
 		9F73EAE82150ECCE0046B7D2 = {
 			isa = PBXGroup;
 			children = (
-				9FF94A4E2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec */,
+				9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */,
 				9FF94A4C2154B77B00FC8F22 /* README.md */,
-				9FF94A3F2154B76200FC8F22 /* RRUIViewControllerExtension */,
+				9FF94A3F2154B76200FC8F22 /* RRViewControllerExtension */,
 				9F73EAF32150ECCE0046B7D2 /* RRUIViewControllerDemo */,
 				9F73EAF22150ECCE0046B7D2 /* Products */,
 			);
@@ -161,18 +161,18 @@
 			path = commView;
 			sourceTree = "<group>";
 		};
-		9FF94A3F2154B76200FC8F22 /* RRUIViewControllerExtension */ = {
+		9FF94A3F2154B76200FC8F22 /* RRViewControllerExtension */ = {
 			isa = PBXGroup;
 			children = (
 				9FEF23682156514400C4B33E /* resources */,
-				9FF94A432154B76200FC8F22 /* RRUIViewControllerExtension.h */,
+				9FF94A432154B76200FC8F22 /* RRViewControllerExtension.h */,
 				9FF94A402154B76200FC8F22 /* README.md */,
 				9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */,
 				9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */,
 				9FF94A462154B76200FC8F22 /* UIViewController+RRExtension.h */,
 				9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */,
 			);
-			path = RRUIViewControllerExtension;
+			path = RRViewControllerExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,7 +242,7 @@
 				9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */,
 				9FF94A482154B76200FC8F22 /* README.md in Resources */,
 				9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */,
-				9FF94A4F2154C8AD00FC8F22 /* RRUIViewControllerExtension.podspec in Resources */,
+				9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */,
 				9FF94A4D2154B77B00FC8F22 /* README.md in Resources */,
 				9F73EAFE2150ECCE0046B7D2 /* Assets.xcassets in Resources */,
 			);

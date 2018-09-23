@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RRUIViewControllerExtension.h"
+#import "RRViewControllerExtension.h"
 #import "DEMO_normalMemoryLeakViewController.h"
 #import "CommView.h"
 @interface AppDelegate ()

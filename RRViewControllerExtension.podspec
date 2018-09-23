@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint RRUIViewControllerExtension.podspec' to ensure this is a
+#  Be sure to run `pod spec lint RRViewControllerExtension.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name         = "RRUIViewControllerExtension"
-  s.version      = "1.2.3"
+  s.name         = "RRViewControllerExtension"
+  s.version      = "1.2.4"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
@@ -86,10 +86,10 @@ A lightweight UIViewController category extension for UINavigationBar appearance
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "RRUIViewControllerExtension/**/*.{h,m}"
+  s.source_files  = "RRViewControllerExtension/**/*.{h,m}"
   # s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "RRUIViewControllerExtension/*.h"
+  s.public_header_files = "RRViewControllerExtension/*.h"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -99,9 +99,9 @@ A lightweight UIViewController category extension for UINavigationBar appearance
   #  non-essential files like tests, examples and documentation.
   #
 
-  s.resource  = "RRUIViewControllerExtension/resources/**/*"
+  s.resource  = "RRViewControllerExtension/resources/**/*"
 
-  # s.resources = "RRUIViewControllerExtension/resources/*.png"
+  # s.resources = "RRViewControllerExtension/resources/*.png"
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
 

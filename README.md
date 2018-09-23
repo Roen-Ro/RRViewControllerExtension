@@ -1,4 +1,4 @@
-# [RRUIViewControllerExtension](https://github.com/Roen-Ro/RRViewControllerExtension)
+# [RRViewControllerExtension](https://github.com/Roen-Ro/RRViewControllerExtension)
 
 
 A lightweight UIViewController category extension for UINavigationBar  appearance management, view controller push/pop/dismiss management, memory leak detection and other convenient property and methods. Benefits include:
@@ -95,7 +95,7 @@ You can also specify the default  `UINavigationBar`  appearance for each `UINavi
 ```
 
 ### Memory leak detection
-to detect memory leak on runtime for viewcontrollers, all you have to do is just import the  `RRUIViewControllerExtension` to your project. whenever a memory leak happened, there will be a alert show on your app.
+to detect memory leak on runtime for viewcontrollers, all you have to do is just import the  `RRViewControllerExtension` to your project. whenever a memory leak happened, there will be a alert show on your app.
 ![](https://github.com/Roen-Ro/DemoResources/blob/master/RRUIViewControllerExtensio/memLeak01.png)
 
 you can also spcify which class of  `UIViewController` or more precisely on which   `UIViewController` instance you want to do the memory leak detection by reference to methods below in `UIViewController+RRExtension.h`
@@ -143,18 +143,18 @@ hook any of the `UIViewController` life cycylcle method before or after executio
 To install using [CocoaPods](https://github.com/cocoapods/cocoapods), add the following to your project Podfile:
 
 ```ruby
-pod 'RRUIViewControllerExtension'
+pod 'RRViewControllerExtension'
 ```
 and in your project file importing by:
 ```objective-c
-#import <RRUIViewControllerExtension.h>
+#import <RRViewControllerExtension.h>
 ```
 
 
-Alternatively, drag and drop RRUIViewControllerExtension directory from [this code project](https://github.com/Roen-Ro/RRViewControllerExtension) into your Xcode project, importing files by:
+Alternatively, drag and drop RRViewControllerExtension directory from [this code project](https://github.com/Roen-Ro/RRViewControllerExtension) into your Xcode project, importing files by:
 
 ```objective-c
-#import "RRUIViewControllerExtension.h"
+#import "RRViewControllerExtension.h"
 ```
 
 

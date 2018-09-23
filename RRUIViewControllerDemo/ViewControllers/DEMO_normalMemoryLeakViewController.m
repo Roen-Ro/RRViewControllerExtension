@@ -7,7 +7,7 @@
 //
 
 #import "DEMO_normalMemoryLeakViewController.h"
-#import "RRUIViewControllerExtension.h"
+#import "RRViewControllerExtension.h"
 #import "SwitchableViewController.h"
 #import "DynamicConfigViewController.h"
 #import "DEMO_ImageNaviBarViewController.h"

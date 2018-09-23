@@ -7,7 +7,7 @@
 //
 
 #import "DynamicConfigViewController.h"
-#import "RRUIViewControllerExtension.h"
+#import "RRViewControllerExtension.h"
 #import "DEMO_ImageNaviBarViewController.h"
 
 
