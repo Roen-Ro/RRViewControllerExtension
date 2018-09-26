@@ -24,15 +24,11 @@
 		9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A2321536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib */; };
 		9FF94A4A2154B76200FC8F22 /* UINavigationController+RRSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */; };
 		9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */; };
+		9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */; };
 		9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */; };
-		C7D681068B75375E53316D23 /* libPods-RRUIViewControllerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 560DE1C33BB83F0CAC9488B9 /* libPods-RRUIViewControllerDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0583A007E7CBB065B97DFFC2 /* Pods-RRUIViewControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RRUIViewControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RRUIViewControllerDemo/Pods-RRUIViewControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		560DE1C33BB83F0CAC9488B9 /* libPods-RRUIViewControllerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RRUIViewControllerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F052814215B2F8700229FDA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9F052815215B2F8700229FDA /* RRViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRViewControllerExtension.podspec; sourceTree = "<group>"; };
 		9F73EAF12150ECCE0046B7D2 /* RRUIViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RRUIViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F73EAF42150ECCE0046B7D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F73EAF52150ECCE0046B7D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,9 +58,9 @@
 		9FF94A462154B76200FC8F22 /* UIViewController+RRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RRExtension.h"; sourceTree = "<group>"; };
 		9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RRExtension.m"; sourceTree = "<group>"; };
 		9FF94A4C2154B77B00FC8F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRViewControllerExtension.podspec; sourceTree = "<group>"; };
 		9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchableViewController.h; sourceTree = "<group>"; };
 		9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchableViewController.m; sourceTree = "<group>"; };
-		F77A081C442F6C19D8ED1324 /* Pods-RRUIViewControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RRUIViewControllerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RRUIViewControllerDemo/Pods-RRUIViewControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,31 +68,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7D681068B75375E53316D23 /* libPods-RRUIViewControllerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F052813215B2F8700229FDA /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				9F052814215B2F8700229FDA /* README.md */,
-				9F052815215B2F8700229FDA /* RRViewControllerExtension.podspec */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
 		9F73EAE82150ECCE0046B7D2 = {
 			isa = PBXGroup;
 			children = (
+				9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */,
 				9FF94A4C2154B77B00FC8F22 /* README.md */,
 				9FF94A3F2154B76200FC8F22 /* RRViewControllerExtension */,
 				9F73EAF32150ECCE0046B7D2 /* RRUIViewControllerDemo */,
 				9F73EAF22150ECCE0046B7D2 /* Products */,
-				A83E82C3CC43C09091AD4538 /* Pods */,
-				ECD57DD8C33E535DDF48BFE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -166,7 +151,6 @@
 		9FF94A3F2154B76200FC8F22 /* RRViewControllerExtension */ = {
 			isa = PBXGroup;
 			children = (
-				9F052813215B2F8700229FDA /* Pod */,
 				9FF94A432154B76200FC8F22 /* RRViewControllerExtension.h */,
 				9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */,
 				9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */,
@@ -176,23 +160,6 @@
 			path = RRViewControllerExtension;
 			sourceTree = "<group>";
 		};
-		A83E82C3CC43C09091AD4538 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0583A007E7CBB065B97DFFC2 /* Pods-RRUIViewControllerDemo.debug.xcconfig */,
-				F77A081C442F6C19D8ED1324 /* Pods-RRUIViewControllerDemo.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		ECD57DD8C33E535DDF48BFE6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				560DE1C33BB83F0CAC9488B9 /* libPods-RRUIViewControllerDemo.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,7 +167,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F73EB072150ECCE0046B7D2 /* Build configuration list for PBXNativeTarget "RRUIViewControllerDemo" */;
 			buildPhases = (
-				F1C4AFEDF53DC45F209A31E2 /* [CP] Check Pods Manifest.lock */,
 				9F73EAED2150ECCE0046B7D2 /* Sources */,
 				9F73EAEE2150ECCE0046B7D2 /* Frameworks */,
 				9F73EAEF2150ECCE0046B7D2 /* Resources */,
@@ -259,32 +225,12 @@
 				9FEF4CC52150F164009292EC /* CommView.xib in Resources */,
 				9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */,
 				9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */,
+				9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */,
 				9F73EAFE2150ECCE0046B7D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F1C4AFEDF53DC45F209A31E2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RRUIViewControllerDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9F73EAED2150ECCE0046B7D2 /* Sources */ = {
@@ -424,7 +370,6 @@
 		};
 		9F73EB082150ECCE0046B7D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0583A007E7CBB065B97DFFC2 /* Pods-RRUIViewControllerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -440,7 +385,6 @@
 		};
 		9F73EB092150ECCE0046B7D2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F77A081C442F6C19D8ED1324 /* Pods-RRUIViewControllerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

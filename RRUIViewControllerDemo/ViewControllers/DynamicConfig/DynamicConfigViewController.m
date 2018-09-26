@@ -143,11 +143,6 @@
 
 -(IBAction)pushToImageNaviBar:(UIButton *)sender
 {
-//#warning test
-//    CGRect rect = self.navigationController.navigationBar.frame;
-//    rect.origin.y--;
-//    self.navigationController.navigationBar.frame = rect;
-//    return;
     DEMO_ImageNaviBarViewController *vc = [[DEMO_ImageNaviBarViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES completionBlock:^{
         NSLog(@"finish push to DEMO_ImageNaviBarViewController");

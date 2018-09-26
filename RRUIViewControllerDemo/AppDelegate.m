@@ -44,9 +44,6 @@
             if(!viewController.title)
                 viewController.title = NSStringFromClass([viewController class]);
             
-//            UIBarButtonItem *litm1 = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"L%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
-//            viewController.navigationItem.leftBarButtonItem = litm1;
-            
             UIBarButtonItem *ritm = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"R%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
 
             viewController.navigationItem.rightBarButtonItem = ritm;
