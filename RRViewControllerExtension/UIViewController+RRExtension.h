@@ -100,7 +100,10 @@ in debug mode, defalut is NO for classes returned from +memoryLeakDetectionExclu
 //for subclass to override
 -(void)didReceiveMemoryLeakWarning;
 
-
+#pragma mark- global setting
+//customize the navigation bar back button item image
++(UIImage *)navigationBackBarButtonItemImage;
++(void)setNavigationBackBarButtonItemImage:(UIImage *)image;
 
 #pragma mark- hook
 
@@ -116,6 +119,8 @@ in debug mode, defalut is NO for classes returned from +memoryLeakDetectionExclu
 +(void)hookLifecycle:(RRViewControllerLifeCycleMethod)lifecycleMethod
             onTiming:(RRMethodInsertTiming)timing
            withBlock:(RRViewControllerLifecycleHookBlock)block;
+
+
 
 
 @end

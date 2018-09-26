@@ -60,6 +60,7 @@ __weak UIView *sMemleakWarningView;
     });
 }
 
+#pragma mark- hook
 +(void)hookLifecycle:(RRViewControllerLifeCycleMethod)lifecycleMethod
             onTiming:(RRMethodInsertTiming)timing
            withBlock:(RRViewControllerLifecycleHookBlock)block
@@ -95,6 +96,38 @@ __weak UIView *sMemleakWarningView;
     RRViewControllerLifecycleHookBlock blk = [sAfterHookBlockMap objectForKey:@(lifecycleMethod)];
     if(blk)
         blk(self,animate);
+}
+
+#pragma mark- global setting
++(UIImage *)navigationBackBarButtonItemImage
+{
+    if(!backIndicatorImage)
+    {
+        CGRect rect = CGRectMake(0, 0, 44, 44);
+        CGFloat xInset = 30;
+        CGFloat yInset = 11;
+        UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetStrokeColorWithColor(context,[UIColor blackColor].CGColor);
+        CGContextSetLineJoin(context, kCGLineJoinRound);
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, 2.0);
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathMoveToPoint(path, NULL, rect.size.width-xInset, yInset);
+        CGPathAddLineToPoint(path, NULL, 2, rect.size.height/2);
+        CGPathAddLineToPoint(path, NULL, rect.size.width-xInset, rect.size.height-yInset);
+        CGContextAddPath(context, path);
+        CGContextStrokePath(context);
+        backIndicatorImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        CGPathRelease(path);
+        
+    }
+    return backIndicatorImage;
+}
++(void)setNavigationBackBarButtonItemImage:(UIImage *)image
+{
+    backIndicatorImage = image;
 }
 
 #pragma mark - exchanged life cyle methods
@@ -252,12 +285,7 @@ __weak UIView *sMemleakWarningView;
     UIBarButtonItem *backItem = objc_getAssociatedObject(self, @"backItem");
     if(!backItem)
     {
-        if(!backIndicatorImage)
-        {
-            backIndicatorImage = [[UIImage imageNamed:@"icon_button_return"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        }
-        backItem = [[UIBarButtonItem alloc] initWithImage:backIndicatorImage style:UIBarButtonItemStylePlain target:self action:@selector(dismissBarButtonItemEventHandle:)];
-        backItem.imageInsets = UIEdgeInsetsMake(0, -2, 0, -8);//
+        backItem = [[UIBarButtonItem alloc] initWithImage:[[self class] navigationBackBarButtonItemImage] style:UIBarButtonItemStylePlain target:self action:@selector(dismissBarButtonItemEventHandle:)];
         objc_setAssociatedObject(self, @"backItem", backItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     return backItem;

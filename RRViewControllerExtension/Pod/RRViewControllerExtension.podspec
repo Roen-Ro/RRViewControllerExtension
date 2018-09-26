@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRViewControllerExtension"
-  s.version      = "1.2.4"
+  s.version      = "1.2.6"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
@@ -99,8 +99,10 @@ A lightweight UIViewController category extension for UINavigationBar appearance
   #  non-essential files like tests, examples and documentation.
   #
 
-  s.resource  = "RRViewControllerExtension/resources/**/*"
-
+  #  s.resource_bundles = {
+  #        'RRViewControllerExtension' => ['RRViewControllerExtension/resources/*.png']
+  #    }
+  # s.resource  = "RRViewControllerExtension/resources/**/*"
   # s.resources = "RRViewControllerExtension/resources/*.png"
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
