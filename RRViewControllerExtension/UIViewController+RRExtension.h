@@ -70,7 +70,7 @@ typedef void (^RRViewControllerLifecycleHookBlock) (UIViewController *viewContro
 
 #pragma mark-
 
-// force update,should be called whenever the return values for the view controller's navigation appearance have changed.
+// force update,call this method whenever the return values for the view controller's navigation appearance methods should change.
 -(void)updateNavigationAppearance:(BOOL)animated;
 
 //show/hide the navigation back buttonItem on left of the navigation bar
