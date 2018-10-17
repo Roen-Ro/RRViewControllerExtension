@@ -104,7 +104,9 @@ __weak UIView *sMemleakWarningView;
     if(!backIndicatorImage)
     {
         CGRect rect = CGRectMake(0, 0, 24, 44);
-        CGFloat yInset = 12;
+        CGFloat yInset = 13;
+        CGFloat xOrg = 1;
+        CGFloat xLen = 7;
         UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context,[UIColor blackColor].CGColor);
@@ -112,9 +114,9 @@ __weak UIView *sMemleakWarningView;
         CGContextSetLineCap(context, kCGLineCapRound);
         CGContextSetLineWidth(context, 2.0);
         CGMutablePathRef path = CGPathCreateMutable();
-        CGPathMoveToPoint(path, NULL, 12, yInset);
-        CGPathAddLineToPoint(path, NULL, 2, rect.size.height/2);
-        CGPathAddLineToPoint(path, NULL, 12, rect.size.height-yInset);
+        CGPathMoveToPoint(path, NULL, xOrg+xLen, yInset);
+        CGPathAddLineToPoint(path, NULL, xOrg, rect.size.height/2);
+        CGPathAddLineToPoint(path, NULL, xOrg+xLen, rect.size.height-yInset);
         CGContextAddPath(context, path);
         CGContextStrokePath(context);
         backIndicatorImage = UIGraphicsGetImageFromCurrentImageContext();
