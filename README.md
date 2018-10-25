@@ -9,7 +9,7 @@ A lightweight UIViewController category extension for UINavigationBar  appearanc
 - `UIViewController` life cycle method hook
 - Other convenient properties
 
-Reference to [this demo](https://github.com/Roen-Ro/RRViewControllerExtension) on github
+Reference to [this demo](https://github.com/Roen-Ro/RRViewControllerExtension) on github, [中文介绍戳这里](https://www.jianshu.com/p/59aba25692fe)。
 
 ## Usage
 
