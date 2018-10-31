@@ -113,8 +113,8 @@ in debug mode, defalut is NO for classes returned from +memoryLeakDetectionExclu
  @param timing before or after the life cylce method
  @param block the block code to implement the hook
  
- NOTE:the newlly set hook blocks will take place of the older ones with the same lifecycle method and same timing
- Optionally you can use Aspects(https://github.com/steipete/Aspects) to add hook for any objc method
+ NOTE:the newlly set hook blocks will take place of the older ones with the same lifecycle method and same timing.
+ Or you can use Aspects(https://github.com/steipete/Aspects) to add hook for any objc method
  */
 +(void)hookLifecycle:(RRViewControllerLifeCycleMethod)lifecycleMethod
             onTiming:(RRMethodInsertTiming)timing

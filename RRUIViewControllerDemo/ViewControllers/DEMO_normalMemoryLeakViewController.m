@@ -12,6 +12,7 @@
 #import "DynamicConfigViewController.h"
 #import "DEMO_ImageNaviBarViewController.h"
 #import "DEMO_normalMemoryLeakViewController.h"
+#import <MessageUI/MessageUI.h>
 
 //only for memmory leak test 仅用于vc内存泄露测试
 NSMutableArray *sVcMemLeakDebugArray;
@@ -85,5 +86,29 @@ static int sCreatedCount;
     navi.defaultNavigationTitleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor blueColor] forKey:NSForegroundColorAttributeName];
     [self presentViewController:navi animated:YES completion:nil];
 }
+
+//set system MFMessageComposeViewController to ignore settings
+- (IBAction)pushMFMsgComposeVc:(id)sender
+{
+    if ([MFMessageComposeViewController canSendText])
+    {
+        MFMessageComposeViewController *sendMessageVC = [[MFMessageComposeViewController alloc]init];
+        sendMessageVC.messageComposeDelegate = self;
+        sendMessageVC.defaultNavigationBarHidden = YES;
+        sendMessageVC.recipients = @[@"13714854091"];
+        sendMessageVC.body  = @"Hello world";
+        [self.navigationController presentViewController:sendMessageVC animated:YES completion:nil];
+    }
+    else
+        NSLog(@"MFMessageComposeViewController is not available");
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
 
 @end

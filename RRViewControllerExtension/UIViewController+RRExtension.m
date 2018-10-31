@@ -149,7 +149,7 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_viewDidLoad];
     
-    [self showNavigationBackItem:![self prefersNavigationBackItemHidden]];
+  //  [self showNavigationBackItem:![self prefersNavigationBackItemHidden]];
 
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
     
@@ -174,7 +174,7 @@ __weak UIView *sMemleakWarningView;
     [self invokeBeforeHookForLifecycle:RRViewControllerLifeCycleViewDidAppear animated:animated];
     
     [self exchg_viewDidAppear:animated];
-
+    
     objc_setAssociatedObject(self, @"viewAppear", @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     [self setNeedsStatusBarAppearanceUpdate];
@@ -239,7 +239,7 @@ __weak UIView *sMemleakWarningView;
 {
     if(!self.navigationController || !self.isViewLoaded)
         return;
-    
+
     if([self prefersNavigationBarHidden])
     {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
@@ -255,6 +255,7 @@ __weak UIView *sMemleakWarningView;
 #pragma clang diagnostic pop
     }
     
+    [self showNavigationBackItem:![self prefersNavigationBackItemHidden]];
     
     BOOL transparent = [self prefersNavigationBarTransparent];
     [self.navigationController setNavigationBarTransparent:transparent];

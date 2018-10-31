@@ -1,0 +1,34 @@
+.DS_Store
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+
+*.mode1v3
+*.mode2v3
+
+*.xcodeproj/xcuserdata/*.xcuserdatad
+
+*.xccheckout
+*.xcuserdatad
+
+Pods
+
+DerivedData
+build
+
+*.swp
+
+*.gcov
+*.gcno
+*.gcda
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Buck
+/buck-out
+/.buckconfig.local
+/.buckd
+
