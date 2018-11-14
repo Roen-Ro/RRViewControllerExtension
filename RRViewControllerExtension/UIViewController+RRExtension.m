@@ -104,15 +104,15 @@ __weak UIView *sMemleakWarningView;
     if(!backIndicatorImage)
     {
         CGRect rect = CGRectMake(0, 0, 24, 44);
-        CGFloat yInset = 13;
+        CGFloat yInset = 14;
         CGFloat xOrg = 1;
-        CGFloat xLen = 7;
+        CGFloat xLen = 8;
         UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context,[UIColor blackColor].CGColor);
         CGContextSetLineJoin(context, kCGLineJoinRound);
         CGContextSetLineCap(context, kCGLineCapRound);
-        CGContextSetLineWidth(context, 2.0);
+        CGContextSetLineWidth(context, 1.5);
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathMoveToPoint(path, NULL, xOrg+xLen, yInset);
         CGPathAddLineToPoint(path, NULL, xOrg, rect.size.height/2);
@@ -285,13 +285,17 @@ __weak UIView *sMemleakWarningView;
 
 -(UIBarButtonItem *)navigationBackItem
 {
-    UIBarButtonItem *backItem = objc_getAssociatedObject(self, @"backItem");
+    UIBarButtonItem *backItem = objc_getAssociatedObject(self.navigationController, @"backItem");
     if(!backItem)
     {
-        backItem = [[UIBarButtonItem alloc] initWithImage:[[self class] navigationBackBarButtonItemImage] style:UIBarButtonItemStylePlain target:self action:@selector(dismissBarButtonItemEventHandle:)];
-        objc_setAssociatedObject(self, @"backItem", backItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        backItem = [[UIBarButtonItem alloc] initWithImage:[[self class] navigationBackBarButtonItemImage] style:UIBarButtonItemStylePlain target:nil action:nil];
+        objc_setAssociatedObject(self.navigationController, @"backItem", backItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     }
+    
+    backItem.target = self;
+    backItem.action = @selector(dismissBarButtonItemEventHandle:);
+    
     return backItem;
 }
 
@@ -464,7 +468,7 @@ __weak UIView *sMemleakWarningView;
     
     __weak typeof(self) weak_self = self;
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         if(weak_self
            && !weak_self.parentViewController
