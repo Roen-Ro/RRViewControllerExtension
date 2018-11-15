@@ -14,7 +14,7 @@
 #import "DEMO_normalMemoryLeakViewController.h"
 #import <MessageUI/MessageUI.h>
 
-//only for memmory leak test 仅用于vc内存泄露测试
+//only for memmory leak debug 仅用于vc内存泄露调试
 NSMutableArray *sVcMemLeakDebugArray;
 static int sCreatedCount;
 
@@ -46,10 +46,10 @@ static int sCreatedCount;
 
 -(BOOL)viewControllerShouldDismiss
 {
-    UIAlertController *alvCtrl = [UIAlertController alertControllerWithTitle:@"Warning" message:@"Do you really want to leave this page?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alvCtrl = [UIAlertController alertControllerWithTitle:@"Tips" message:@"Override -[UIViewController viewControllerShouldDismiss] method and return NO will block the view dismiss, you can show an alert in this method" preferredStyle:UIAlertControllerStyleAlert];
 
-    [alvCtrl addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:nil]];
-    [alvCtrl addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alvCtrl addAction:[UIAlertAction actionWithTitle:@"Stay" style:UIAlertActionStyleCancel handler:nil]];
+    [alvCtrl addAction:[UIAlertAction actionWithTitle:@"Leave" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self dismissView];
@@ -64,19 +64,6 @@ static int sCreatedCount;
 }
 
 
--(IBAction)presentNaked:(id)sender
-{
-    DEMO_normalMemoryLeakViewController *vc1 = [[DEMO_normalMemoryLeakViewController alloc] init];
-    DEMO_ImageNaviBarViewController *vc2 = [[DEMO_ImageNaviBarViewController alloc] init];
-    vc2.title = @"img";
-    DynamicConfigViewController *vc3 = [[DynamicConfigViewController alloc] initWithNibName:@"DynamicConfigViewController" bundle:nil];
-    vc3.title = @"dyn";
-    
-    SwitchableViewController *svc = [[SwitchableViewController alloc] initWithViewControllers:@[vc1,vc2,vc3]];
-    
-    [self.navigationController pushViewController:svc animated:YES];
-    
-}
 
 -(IBAction)presentNavigationWrappedVc:(id)sender
 {
@@ -87,27 +74,7 @@ static int sCreatedCount;
     [self presentViewController:navi animated:YES completion:nil];
 }
 
-//set system MFMessageComposeViewController to ignore settings
-- (IBAction)pushMFMsgComposeVc:(id)sender
-{
-    if ([MFMessageComposeViewController canSendText])
-    {
-        MFMessageComposeViewController *sendMessageVC = [[MFMessageComposeViewController alloc]init];
-        sendMessageVC.messageComposeDelegate = self;
-        sendMessageVC.defaultNavigationBarHidden = YES;
-        sendMessageVC.recipients = @[@"13714854091"];
-        sendMessageVC.body  = @"Hello world";
-        [self.navigationController presentViewController:sendMessageVC animated:YES completion:nil];
-    }
-    else
-        NSLog(@"MFMessageComposeViewController is not available");
-}
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
-{
-    [controller dismissViewControllerAnimated:YES completion:nil];
-    
-}
 
 
 

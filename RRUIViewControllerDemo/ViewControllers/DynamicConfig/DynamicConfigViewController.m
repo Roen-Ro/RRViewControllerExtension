@@ -10,7 +10,7 @@
 #import "RRViewControllerExtension.h"
 #import "DEMO_ImageNaviBarViewController.h"
 
-
+// do not confused with code in this file, most of it is for the
 @implementation DynamicConfigViewController
 {
     
@@ -25,19 +25,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"make changes";
+    self.title = @"dynamic appearance";
     
     UIBarButtonItem *ritm2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_apple"] style:UIBarButtonItemStylePlain target:nil action:nil];
     self.navigationItem.rightBarButtonItem = ritm2;
     
-    NSURL *imgUrl = [[NSBundle mainBundle] URLForResource:@"img_background" withExtension:@"jpeg"];
-    UIImage *bgImage = [UIImage imageWithContentsOfFile:imgUrl.path];
-    self.view.layer.contents = (__bridge id _Nullable)(bgImage.CGImage);
-    UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView * effe = [[UIVisualEffectView alloc]initWithEffect:blur];
-    effe.frame = self.view.bounds;
-    effe.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [self.view insertSubview:effe atIndex:0];
+    self.view.backgroundColor = [UIColor darkGrayColor];
     
     [self randomChange:nil];
     

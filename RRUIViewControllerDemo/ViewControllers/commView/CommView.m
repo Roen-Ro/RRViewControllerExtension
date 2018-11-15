@@ -7,8 +7,12 @@
 //
 
 #import "CommView.h"
-#import "DynamicConfigViewController.h"
 #import "RRViewControllerExtension.h"
+#import "SwitchableViewController.h"
+#import "RRViewControllerExtension.h"
+#import "DynamicConfigViewController.h"
+#import "DEMO_ImageNaviBarViewController.h"
+#import "DEMO_normalMemoryLeakViewController.h"
 
 @implementation CommView
 {
@@ -34,6 +38,19 @@
 {
    DynamicConfigViewController *dyVc = [[DynamicConfigViewController alloc] initWithNibName:@"DynamicConfigViewController" bundle:nil];
     [self.viewController.navigationController pushViewController:dyVc animated:YES];
+}
+
+-(IBAction)toSwitchable:(id)sender
+{
+    DEMO_normalMemoryLeakViewController *vc1 = [[DEMO_normalMemoryLeakViewController alloc] init];
+    DEMO_ImageNaviBarViewController *vc2 = [[DEMO_ImageNaviBarViewController alloc] init];
+    vc2.title = @"img";
+    DynamicConfigViewController *vc3 = [[DynamicConfigViewController alloc] initWithNibName:@"DynamicConfigViewController" bundle:nil];
+    vc3.title = @"dyn";
+    
+    SwitchableViewController *svc = [[SwitchableViewController alloc] initWithViewControllers:@[vc1,vc2,vc3]];
+    
+    [self.viewController.navigationController pushViewController:svc animated:YES];
 }
 
 - (IBAction)foreceDismiss:(id)sender {

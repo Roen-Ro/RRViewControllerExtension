@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-
+//normal navigation bar appearance, memory leak
 @interface DEMO_normalMemoryLeakViewController : UIViewController
 
 @end

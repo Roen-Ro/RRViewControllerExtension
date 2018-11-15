@@ -16,13 +16,16 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:.88 alpha:1];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    self.title = @"IMAGE";
+    self.view.backgroundColor = [UIColor yellowColor];
 }
 
 -(nullable UIImage *)preferredNavigationBarBackgroundImage
 {
     return [UIImage imageNamed:@"cusNavigationBar"];
 }
-
 
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//navigation bar with image
 @interface DEMO_ImageNaviBarViewController : UIViewController
 
 @end

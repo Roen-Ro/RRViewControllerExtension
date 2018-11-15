@@ -11,6 +11,9 @@ A lightweight UIViewController category extension for UINavigationBar  appearanc
 
 Reference to [this demo](https://github.com/Roen-Ro/RRViewControllerExtension) on github, [中文介绍戳这里](https://www.jianshu.com/p/59aba25692fe)。
 
+## Preview
+![](https://github.com/Roen-Ro/DemoResources/blob/master/RRUIViewControllerExtensio/rrvc004.gif?raw=true)
+
 ## Usage
 
 ### `UINavigationBar` appearance management
@@ -96,7 +99,7 @@ You can also specify the default  `UINavigationBar`  appearance for each `UINavi
 
 ### Memory leak detection
 to detect memory leak on runtime for viewcontrollers, all you have to do is just import the  `RRViewControllerExtension` to your project. whenever a memory leak happened, there will be a alert show on your app.
-![](https://github.com/Roen-Ro/DemoResources/blob/master/RRUIViewControllerExtensio/memLeak01.png)
+![](https://github.com/Roen-Ro/DemoResources/blob/master/RRUIViewControllerExtensio/screen001.jpeg?raw=true)
 
 you can also spcify which class of  `UIViewController` or more precisely on which   `UIViewController` instance you want to do the memory leak detection by reference to methods below in `UIViewController+RRExtension.h`
 

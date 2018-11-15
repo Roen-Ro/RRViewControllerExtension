@@ -20,8 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     //setup app appearance
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.45 blue:0.8 alpha:1.0]];
-    [[UINavigationBar appearance] setTintColor:[UIColor redColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0 green:0.4 blue:0.7 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor yellowColor] forKey:NSForegroundColorAttributeName];
     [[UINavigationBar appearance] setTitleTextAttributes:dict];
     
@@ -40,17 +40,17 @@
 
         if([NSStringFromClass([viewController class]) hasPrefix:@"DEMO_"])
         {
-            viewController.view.backgroundColor = [UIColor whiteColor];
-            if(!viewController.title)
-                viewController.title = NSStringFromClass([viewController class]);
-            
-            UIBarButtonItem *ritm = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"R%d",rand()%100] style:UIBarButtonItemStylePlain target:nil action:nil];
-
-            viewController.navigationItem.rightBarButtonItem = ritm;
+//            viewController.view.backgroundColor = [UIColor whiteColor];
+//            if(!viewController.title)
+//                viewController.title = NSStringFromClass([viewController class]);
+//            
+//            UIBarButtonItem *ritm = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"R%d",rand()%10] style:UIBarButtonItemStylePlain target:nil action:nil];
+//
+//            viewController.navigationItem.rightBarButtonItem = ritm;
             
             CommView *v = [[NSBundle mainBundle] loadNibNamed:@"CommView" owner:nil options:nil].firstObject;
             v.viewController = viewController;
-            v.frame = CGRectMake(0, 88, viewController.view.frame.size.width, v.frame.size.height);
+            v.frame = CGRectMake(0, 96, viewController.view.frame.size.width, v.frame.size.height);
             [viewController.view addSubview:v];
             
         }

@@ -15,7 +15,6 @@
 		9F73EB34215100930046B7D2 /* DEMO_ImageNaviBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73EB33215100930046B7D2 /* DEMO_ImageNaviBarViewController.m */; };
 		9F73EB362151018C0046B7D2 /* cusNavigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EB352151018C0046B7D2 /* cusNavigationBar@2x.png */; };
 		9F73EB412152242E0046B7D2 /* icon_apple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EB402152242E0046B7D2 /* icon_apple@2x.png */; };
-		9F73EB43215225540046B7D2 /* img_background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EB42215225540046B7D2 /* img_background.jpeg */; };
 		9FEF4CBF2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF4CBE2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m */; };
 		9FEF4CC32150F135009292EC /* CommView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC22150F135009292EC /* CommView.m */; };
 		9FEF4CC52150F164009292EC /* CommView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC42150F164009292EC /* CommView.xib */; };
@@ -42,7 +41,6 @@
 		9F73EB33215100930046B7D2 /* DEMO_ImageNaviBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMO_ImageNaviBarViewController.m; sourceTree = "<group>"; };
 		9F73EB352151018C0046B7D2 /* cusNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cusNavigationBar@2x.png"; sourceTree = "<group>"; };
 		9F73EB402152242E0046B7D2 /* icon_apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_apple@2x.png"; sourceTree = "<group>"; };
-		9F73EB42215225540046B7D2 /* img_background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img_background.jpeg; sourceTree = "<group>"; };
 		9FEF4CBD2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMO_normalMemoryLeakViewController.h; sourceTree = "<group>"; };
 		9FEF4CBE2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMO_normalMemoryLeakViewController.m; sourceTree = "<group>"; };
 		9FEF4CC12150F135009292EC /* CommView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommView.h; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				9F73EAFD2150ECCE0046B7D2 /* Assets.xcassets */,
 				9F73EAFF2150ECCE0046B7D2 /* LaunchScreen.storyboard */,
 				9F73EB022150ECCE0046B7D2 /* Info.plist */,
-				9F73EB42215225540046B7D2 /* img_background.jpeg */,
 				9F73EB402152242E0046B7D2 /* icon_apple@2x.png */,
 				9F73EB352151018C0046B7D2 /* cusNavigationBar@2x.png */,
 				9F73EB032150ECCE0046B7D2 /* main.m */,
@@ -221,7 +218,6 @@
 				9F73EB412152242E0046B7D2 /* icon_apple@2x.png in Resources */,
 				9F73EB362151018C0046B7D2 /* cusNavigationBar@2x.png in Resources */,
 				9F73EB012150ECCE0046B7D2 /* LaunchScreen.storyboard in Resources */,
-				9F73EB43215225540046B7D2 /* img_background.jpeg in Resources */,
 				9FEF4CC52150F164009292EC /* CommView.xib in Resources */,
 				9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */,
 				9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */,

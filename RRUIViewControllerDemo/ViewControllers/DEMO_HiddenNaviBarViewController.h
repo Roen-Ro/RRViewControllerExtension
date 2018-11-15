@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+//navigaion bar hidden
 @interface DEMO_HiddenNaviBarViewController : UIViewController
 
 @end
