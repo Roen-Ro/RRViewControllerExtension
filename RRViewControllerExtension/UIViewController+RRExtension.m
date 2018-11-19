@@ -149,7 +149,8 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_viewDidLoad];
     
-  //  [self showNavigationBackItem:![self prefersNavigationBackItemHidden]];
+    //should be here!
+    [self showNavigationBackItem:![self inter_prefersNavigationBackItemHidden]];
 
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
     
@@ -221,6 +222,12 @@ __weak UIView *sMemleakWarningView;
 {
     NSMutableArray *leftItems = [NSMutableArray arrayWithArray:self.navigationItem.leftBarButtonItems];
     UIBarButtonItem *backItem = self.navigationBackItem;
+    if(!backItem)
+        return;
+    
+#warning test
+    NSLog(@"backItem.target=%@ SELF:%@",NSStringFromClass([backItem.target class]),NSStringFromClass([self class]));
+    
     if(show)
     {
         if(![leftItems containsObject:backItem])
@@ -232,6 +239,8 @@ __weak UIView *sMemleakWarningView;
     {
         [leftItems removeObject:backItem];
     }
+    
+    
     self.navigationItem.leftBarButtonItems = leftItems;
 }
 
@@ -255,7 +264,8 @@ __weak UIView *sMemleakWarningView;
 #pragma clang diagnostic pop
     }
     
-    [self showNavigationBackItem:![self prefersNavigationBackItemHidden]];
+    //only set in viewDidLoad
+  //  [self showNavigationBackItem:![self inter_prefersNavigationBackItemHidden]];
     
     BOOL transparent = [self prefersNavigationBarTransparent];
     [self.navigationController setNavigationBarTransparent:transparent];
@@ -276,7 +286,6 @@ __weak UIView *sMemleakWarningView;
     UIColor *barItemTintColor = [self preferredNavigationItemColor];
     [self.navigationController.navigationBar setTintColor:barItemTintColor];
     
-    
     //set navigation bar title attributed
     [self.navigationController.navigationBar setTitleTextAttributes:[self preferredNavigationTitleTextAttributes]];
     
@@ -285,16 +294,15 @@ __weak UIView *sMemleakWarningView;
 
 -(UIBarButtonItem *)navigationBackItem
 {
-    UIBarButtonItem *backItem = objc_getAssociatedObject(self.navigationController, @"backItem");
+    UIBarButtonItem *backItem = objc_getAssociatedObject(self, @"backItem");
     if(!backItem)
     {
         backItem = [[UIBarButtonItem alloc] initWithImage:[[self class] navigationBackBarButtonItemImage] style:UIBarButtonItemStylePlain target:nil action:nil];
-        objc_setAssociatedObject(self.navigationController, @"backItem", backItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
+        objc_setAssociatedObject(self, @"backItem", backItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        backItem.target = self;
+        backItem.action = @selector(dismissBarButtonItemEventHandle:);
     }
-    
-    backItem.target = self;
-    backItem.action = @selector(dismissBarButtonItemEventHandle:);
     
     return backItem;
 }
@@ -348,7 +356,7 @@ __weak UIView *sMemleakWarningView;
     return self.navigationController.defaultNavigationBarHidden;
 }
 
--(BOOL)prefersNavigationBackItemHidden
+-(BOOL)inter_prefersNavigationBackItemHidden
 {
     BOOL hidden = NO;
     if(!self.navigationController.presentingViewController)
@@ -382,6 +390,9 @@ __weak UIView *sMemleakWarningView;
 
 -(IBAction)dismissBarButtonItemEventHandle:(UIBarButtonItem *)backItem
 {
+    
+#warning test
+    NSLog(@"->ACTION item.target:%@ self:%@",NSStringFromClass([backItem.target class]),NSStringFromClass([self class]));
     if([self viewControllerShouldDismiss])
     {
         [self dismissView];
