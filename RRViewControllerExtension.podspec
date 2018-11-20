@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRViewControllerExtension"
-  s.version      = "1.2.11"
+  s.version      = "1.2.12"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
