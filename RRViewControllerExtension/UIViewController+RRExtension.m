@@ -140,6 +140,9 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_loadView];
     
+    //should be here!
+    [self showNavigationBackItem:![self inter_prefersNavigationBackItemHidden]];
+    
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleLoadView animated:NO];
 }
 
@@ -148,9 +151,6 @@ __weak UIView *sMemleakWarningView;
     [self invokeBeforeHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
     
     [self exchg_viewDidLoad];
-    
-    //should be here!
-    [self showNavigationBackItem:![self inter_prefersNavigationBackItemHidden]];
 
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
     
