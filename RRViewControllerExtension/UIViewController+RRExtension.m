@@ -222,12 +222,10 @@ __weak UIView *sMemleakWarningView;
 {
     NSMutableArray *leftItems = [NSMutableArray arrayWithArray:self.navigationItem.leftBarButtonItems];
     UIBarButtonItem *backItem = self.navigationBackItem;
+    
     if(!backItem)
         return;
-    
-#warning test
-    NSLog(@"backItem.target=%@ SELF:%@",NSStringFromClass([backItem.target class]),NSStringFromClass([self class]));
-    
+
     if(show)
     {
         if(![leftItems containsObject:backItem])
@@ -390,13 +388,8 @@ __weak UIView *sMemleakWarningView;
 
 -(IBAction)dismissBarButtonItemEventHandle:(UIBarButtonItem *)backItem
 {
-    
-#warning test
-    NSLog(@"->ACTION item.target:%@ self:%@",NSStringFromClass([backItem.target class]),NSStringFromClass([self class]));
     if([self viewControllerShouldDismiss])
-    {
         [self dismissView];
-    }
 }
 
 
