@@ -112,7 +112,7 @@ __weak UIView *sMemleakWarningView;
         CGContextSetStrokeColorWithColor(context,[UIColor blackColor].CGColor);
         CGContextSetLineJoin(context, kCGLineJoinRound);
         CGContextSetLineCap(context, kCGLineCapRound);
-        CGContextSetLineWidth(context, 1.5);
+        CGContextSetLineWidth(context, 2.0);
         CGMutablePathRef path = CGPathCreateMutable();
         CGPathMoveToPoint(path, NULL, xOrg+xLen, yInset);
         CGPathAddLineToPoint(path, NULL, xOrg, rect.size.height/2);
@@ -140,8 +140,9 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_loadView];
     
-    //should be here!
-    [self showNavigationBackItem:![self inter_prefersNavigationBackItemHidden]];
+    //有时候会在loadView中设置navigationItem,用户改变了这些设置的话，这里就不做其他处理了
+    if(self.navigationController && !self.navigationItem.leftBarButtonItems && ![self inter_prefersNavigationBackItemHidden])
+        [self showNavigationBackItem:YES];
     
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleLoadView animated:NO];
 }
@@ -151,10 +152,13 @@ __weak UIView *sMemleakWarningView;
     [self invokeBeforeHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
     
     [self exchg_viewDidLoad];
+    
+    //发现有些vc并不会调用exchg_loadView方法，所以这里再加一步保障
+    if(self.navigationController &&  !self.navigationItem.leftBarButtonItems && ![self inter_prefersNavigationBackItemHidden])
+        [self showNavigationBackItem:YES];
 
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
     
-
 }
 
 - (void)exchg_viewWillAppear:(BOOL)animated

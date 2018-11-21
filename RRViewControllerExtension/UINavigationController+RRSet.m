@@ -37,11 +37,11 @@ static UIImage *sNavigationBarTransparentImage;
 
 -(NSMutableDictionary *)navigationBarAppearanceDic
 {
-    NSMutableDictionary *mDic = objc_getAssociatedObject(self, @"appearanceDic");
+    NSMutableDictionary *mDic = objc_getAssociatedObject(self, @selector(navigationBarAppearanceDic));
     if(!mDic)
     {
         mDic = [NSMutableDictionary dictionaryWithCapacity:6];
-        objc_setAssociatedObject(self, @"appearanceDic", mDic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self,@selector(navigationBarAppearanceDic), mDic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 
     return mDic;
