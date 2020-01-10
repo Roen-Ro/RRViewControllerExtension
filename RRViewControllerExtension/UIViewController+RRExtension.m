@@ -53,6 +53,8 @@ __weak UIView *sMemleakWarningView;
         sVcLeakDetectionDefaultExceptions = [NSMutableSet setWithObjects:@"UIAlertController",
                                              @"_UIRemoteInputViewController",
                                              @"UICompatibilityInputViewController",
+                                             @"SFAirDropViewController",
+                                             @"UISystemInputAssistantViewController",
                                              nil];
 #endif
         
@@ -520,7 +522,7 @@ __weak UIView *sMemleakWarningView;
         clsBtn.backgroundColor = [UIColor colorWithWhite:1 alpha:0.5];
         [clsBtn setTitle:@"x" forState:UIControlStateNormal];
         [clsBtn setTintColor:[UIColor greenColor]];
-        [clsBtn addTarget:self action:@selector(closeWarning) forControlEvents:UIControlEventTouchUpInside];
+        [clsBtn addTarget:[self class] action:@selector(closeWarning) forControlEvents:UIControlEventTouchUpInside];
         [v addSubview:clsBtn];
         
         sMemleakWarningView = v;
@@ -537,7 +539,7 @@ __weak UIView *sMemleakWarningView;
 }
 
 #if VC_MemoryLeakDetectionEnabled
--(void)closeWarning
++(void)closeWarning
 {
     [sMemleakWarningView removeFromSuperview];
 }
