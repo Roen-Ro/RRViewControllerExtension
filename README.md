@@ -164,7 +164,7 @@ Alternatively, drag and drop RRViewControllerExtension directory from [this code
 
 ## Author
 
-Roen, zxllf23@163.com
+Roen (罗亮富), zxllf23@163.com
 
 ## Licenses
 
