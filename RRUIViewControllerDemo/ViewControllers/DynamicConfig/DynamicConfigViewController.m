@@ -9,6 +9,8 @@
 #import "DynamicConfigViewController.h"
 #import "RRViewControllerExtension.h"
 #import "DEMO_ImageNaviBarViewController.h"
+#import "DEMO_HiddenNaviBarViewController.h"
+#import "DEMO_TransparentNaviBarViewController.h"
 
 // do not confused with code in this file, most of it is for the
 @implementation DynamicConfigViewController
@@ -133,6 +135,16 @@
     [self forceNavigationAppearanceUpdate];
 }
 
+-(IBAction)randomChange:(id)sender
+{
+    self.navigationBarHidden = NO;
+    self.navigationBarTransparent = !rand()%3;
+    self.navigationBarColor = [self randomColor];
+    self.navigationItemColor = [self randomColor];
+    self.navigationTitleAttribute = @{NSForegroundColorAttributeName:[self randomColor],NSFontAttributeName:[UIFont systemFontOfSize:rand()%10+10]};
+    
+    [self forceNavigationAppearanceUpdate];
+}
 
 -(IBAction)pushToImageNaviBar:(UIButton *)sender
 {
@@ -143,15 +155,20 @@
     
 }
 
--(IBAction)randomChange:(id)sender
-{
-    self.navigationBarHidden = NO;
-    self.navigationBarTransparent = !rand()%3;
-    self.navigationBarColor = [self randomColor];
-    self.navigationItemColor = [self randomColor];
-    self.navigationTitleAttribute = @{NSForegroundColorAttributeName:[self randomColor],NSFontAttributeName:[UIFont systemFontOfSize:rand()%10+10]};
+- (IBAction)pushToTransparent:(id)sender {
     
-    [self forceNavigationAppearanceUpdate];
+    DEMO_TransparentNaviBarViewController *vc = [[DEMO_TransparentNaviBarViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES completionBlock:^{
+        NSLog(@"finish push to DEMO_TransparentNaviBarViewController");
+    }];
+}
+
+- (IBAction)pushToHiddenBar:(id)sender {
+    
+    DEMO_HiddenNaviBarViewController *vc = [[DEMO_HiddenNaviBarViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES completionBlock:^{
+        NSLog(@"finish push to DEMO_HiddenNaviBarViewController");
+    }];
 }
 
 #pragma mark-

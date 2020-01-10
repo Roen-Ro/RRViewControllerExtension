@@ -24,6 +24,8 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     NSDictionary * dict = [NSDictionary dictionaryWithObject:[UIColor yellowColor] forKey:NSForegroundColorAttributeName];
     [[UINavigationBar appearance] setTitleTextAttributes:dict];
+   // [[UIView appearance] setBackgroundColor:[UIColor whiteColor]];
+    
     
     DEMO_normalMemoryLeakViewController *rtVc = [[DEMO_normalMemoryLeakViewController alloc] init];
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:rtVc];
