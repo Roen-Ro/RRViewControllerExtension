@@ -53,6 +53,16 @@
     [self.viewController.navigationController pushViewController:svc animated:YES];
 }
 
+- (IBAction)toSysImagePicker:(id)sender {
+    
+    UIImagePickerController *impicker = [UIImagePickerController new];
+    impicker.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.viewController presentViewController:impicker animated:impicker completion:^{
+        
+    }];
+}
+
+
 - (IBAction)foreceDismiss:(id)sender {
     [self.viewController dismissViewAnimated:YES completionBlock:^{
         NSLog(@"%@ dismiss completed",NSStringFromClass([self.viewController class]));

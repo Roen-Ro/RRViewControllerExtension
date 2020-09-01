@@ -252,8 +252,13 @@ __weak UIView *sMemleakWarningView;
 {
     if(!self.navigationController || !self.isViewLoaded)
         return;
+    
+    if([self.navigationController isKindOfClass:[UIImagePickerController class]])
+        return;
+    
+    BOOL hidden = [self prefersNavigationBarHidden];
 
-    if([self prefersNavigationBarHidden])
+    if(hidden)
     {
         [self.navigationController setNavigationBarHidden:YES animated:animated];
     }
