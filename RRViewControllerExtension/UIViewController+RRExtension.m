@@ -143,7 +143,7 @@ __weak UIView *sMemleakWarningView;
     [self exchg_loadView];
     
     //有时候会在loadView中设置navigationItem,用户改变了这些设置的话，这里就不做其他处理了
-    if(self.navigationController && !self.navigationItem.leftBarButtonItems && ![self inter_prefersNavigationBackItemHidden])
+    if([self shouldShowBackItem])
         [self showNavigationBackItem:YES];
     
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleLoadView animated:NO];
@@ -156,7 +156,7 @@ __weak UIView *sMemleakWarningView;
     [self exchg_viewDidLoad];
     
     //发现有些vc并不会调用exchg_loadView方法，所以这里再加一步保障
-    if(self.navigationController &&  !self.navigationItem.leftBarButtonItems && ![self inter_prefersNavigationBackItemHidden])
+    if([self shouldShowBackItem])
         [self showNavigationBackItem:YES];
 
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewDidLoad animated:NO];
@@ -223,6 +223,15 @@ __weak UIView *sMemleakWarningView;
 
 
 #pragma mark-
+
+//only adapt for calling in method -loadView
+-(BOOL)shouldShowBackItem {
+
+     return (   self.navigationController
+             &&  !self.navigationItem.leftBarButtonItems
+             && ![self inter_prefersNavigationBackItemHidden]
+             );
+}
 
 -(void)showNavigationBackItem:(BOOL)show
 {

@@ -160,7 +160,9 @@ Alternatively, drag and drop RRViewControllerExtension directory from [this code
 #import "RRViewControllerExtension.h"
 ```
 
-
+## TODO
+fix bug
+Hide navigation back arrow after reset the stack by: `-[UINavigationController setViewControllers:]`
 
 ## Author
 
