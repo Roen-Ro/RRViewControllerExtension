@@ -42,6 +42,7 @@
 		9F73EB33215100930046B7D2 /* DEMO_ImageNaviBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMO_ImageNaviBarViewController.m; sourceTree = "<group>"; };
 		9F73EB352151018C0046B7D2 /* cusNavigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cusNavigationBar@2x.png"; sourceTree = "<group>"; };
 		9F73EB402152242E0046B7D2 /* icon_apple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_apple@2x.png"; sourceTree = "<group>"; };
+		9FC3AEBD25C9451100BE6C26 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9FCFF6C321C0B03500F92633 /* DEMO_TransparentNaviBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMO_TransparentNaviBarViewController.h; sourceTree = "<group>"; };
 		9FCFF6C421C0B03500F92633 /* DEMO_TransparentNaviBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DEMO_TransparentNaviBarViewController.m; sourceTree = "<group>"; };
 		9FEF4CBD2150EEC6009292EC /* DEMO_normalMemoryLeakViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEMO_normalMemoryLeakViewController.h; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 9F73EAE82150ECCE0046B7D2;
 			productRefGroup = 9F73EAF22150ECCE0046B7D2 /* Products */;
@@ -259,6 +261,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9F73EB002150ECCE0046B7D2 /* Base */,
+				9FC3AEBD25C9451100BE6C26 /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -325,6 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
