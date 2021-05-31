@@ -125,9 +125,11 @@ __weak UIView *sMemleakWarningView;
         UIGraphicsEndImageContext();
         CGPathRelease(path);
 
+        if (@available(iOS 10.0, *)) {
         UIView *v = [UIView new];
         if(v.effectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft)
             backIndicatorImage = [UIImage imageWithCGImage:backIndicatorImage.CGImage scale:backIndicatorImage.scale orientation:UIImageOrientationDown ];
+        }
   
     }
     return backIndicatorImage;
