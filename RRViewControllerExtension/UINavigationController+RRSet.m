@@ -15,6 +15,9 @@ UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) NS_SWIFT_UI_ACTOR
     UINavigationBarAppearance *scrollEdgeAppearance = self.scrollEdgeAppearance;
     if (!scrollEdgeAppearance) {
         scrollEdgeAppearance = [[UINavigationBarAppearance alloc] init];
+        if ([self rr_Transparent]) {
+            scrollEdgeAppearance.backgroundEffect = nil;
+        }
         self.scrollEdgeAppearance = scrollEdgeAppearance;
     }
     return scrollEdgeAppearance;
@@ -23,17 +26,27 @@ UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) NS_SWIFT_UI_ACTOR
     UINavigationBarAppearance *standardAppearance = self.standardAppearance;
     if (!standardAppearance) {
         standardAppearance = [[UINavigationBarAppearance alloc] init];
+        if ([self rr_Transparent]) {
+            standardAppearance.backgroundEffect = nil;
+        }
         self.standardAppearance = standardAppearance;
     }
     return standardAppearance;
 }
 
-static char kAssociatedObjectKey_OrginBackgroundColor;
+static char kAssociatedObjectKey_OrginBackgroundColor_SetupProperty;
 -(void)setRr_OrginBackgroundColor:(UIColor*)rr_OrginBackgroundColor {
-    objc_setAssociatedObject(self, &kAssociatedObjectKey_OrginBackgroundColor, rr_OrginBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_OrginBackgroundColor_SetupProperty, rr_OrginBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 -(UIColor*)rr_OrginBackgroundColor {
-    return objc_getAssociatedObject(self, &kAssociatedObjectKey_OrginBackgroundColor);
+    return objc_getAssociatedObject(self, &kAssociatedObjectKey_OrginBackgroundColor_SetupProperty);
+}
+static char kAssociatedObjectKey_Transparent_SetupProperty;
+-(void)setRr_Transparent:(BOOL)rr_Transparent {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_Transparent_SetupProperty, @(rr_Transparent), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(BOOL)rr_Transparent {
+    return [objc_getAssociatedObject(self, &kAssociatedObjectKey_Transparent_SetupProperty) boolValue];
 }
 
 @end
@@ -70,15 +83,12 @@ static char kAssociatedObjectKey_OrginBackgroundColor;
         [self setRr_OrginBackgroundColor:color];
         UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
         UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
-
-        if (scrollEdgeAppearance.backgroundEffect == nil) {
+        BOOL transparent = [self rr_Transparent];
+        if (transparent) {
             scrollEdgeAppearance.backgroundColor = nil;
-        }else {
-            scrollEdgeAppearance.backgroundColor = color;
-        }
-        if (standardAppearance.backgroundEffect == nil) {
             standardAppearance.backgroundColor = nil;
         }else {
+            scrollEdgeAppearance.backgroundColor = color;
             standardAppearance.backgroundColor = color;
         }
     } else {
@@ -101,12 +111,13 @@ static char kAssociatedObjectKey_OrginBackgroundColor;
 
 -(void)_reloadBarTransparent:(BOOL)transparent {
     if (@available(iOS 13.0, *)) {
+        [self setRr_Transparent:transparent];
         UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
         UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
         
         if (transparent) {
-            scrollEdgeAppearance.backgroundEffect = nil;
             standardAppearance.backgroundEffect = nil;
+            scrollEdgeAppearance.backgroundEffect = nil;
         }else {
             UINavigationBarAppearance *temp = [[UINavigationBarAppearance alloc] init];
             scrollEdgeAppearance.backgroundEffect = temp.backgroundEffect;
@@ -262,8 +273,7 @@ static UIImage *sNavigationBarTransparentImage;
 -(BOOL)isNavigationBarTransparent
 {
     if (@available(iOS 13.0, *)) {
-        UINavigationBarAppearance *standardAppearance = [self.navigationBar _lazyStandardAppearance];
-        return !standardAppearance.backgroundEffect;
+        return [self.navigationBar rr_Transparent];
     }
     UIImage *bgImage = [self.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
     return [bgImage isEqual:sNavigationBarTransparentImage];
