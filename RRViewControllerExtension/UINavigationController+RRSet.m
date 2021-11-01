@@ -8,9 +8,119 @@
 #import "UINavigationController+RRSet.h"
 #import <objc/runtime.h>
 
+#pragma mark - UINavigationController (_SetupProperty)
+UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) NS_SWIFT_UI_ACTOR
+@implementation UINavigationBar (_SetupProperty)
+-(UINavigationBarAppearance*)_lazyScrollEdgeAppearance {
+    UINavigationBarAppearance *scrollEdgeAppearance = self.scrollEdgeAppearance;
+    if (!scrollEdgeAppearance) {
+        scrollEdgeAppearance = [[UINavigationBarAppearance alloc] init];
+        self.scrollEdgeAppearance = scrollEdgeAppearance;
+    }
+    return scrollEdgeAppearance;
+}
+-(UINavigationBarAppearance*)_lazyStandardAppearance {
+    UINavigationBarAppearance *standardAppearance = self.standardAppearance;
+    if (!standardAppearance) {
+        standardAppearance = [[UINavigationBarAppearance alloc] init];
+        self.standardAppearance = standardAppearance;
+    }
+    return standardAppearance;
+}
+
+static char kAssociatedObjectKey_OrginBackgroundColor;
+-(void)setRr_OrginBackgroundColor:(UIColor*)rr_OrginBackgroundColor {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_OrginBackgroundColor, rr_OrginBackgroundColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(UIColor*)rr_OrginBackgroundColor {
+    return objc_getAssociatedObject(self, &kAssociatedObjectKey_OrginBackgroundColor);
+}
+
+@end
+#pragma mark - UINavigationBar+RRSet
+@implementation UINavigationBar (RRSet)
+-(void)reloadBarBackgroundImage:(nullable UIImage *)img {
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
+        UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
+        
+        scrollEdgeAppearance.backgroundImage = img;
+        
+        standardAppearance.backgroundImage = img;
+        
+    } else {
+        [self setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
+    }
+}
+-(void)reloadBarShadowImage:(nullable UIImage *)img{
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
+        UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
+
+        scrollEdgeAppearance.shadowImage = img;
+        
+        standardAppearance.shadowImage = img;
+        
+    } else {
+        [self setShadowImage:img];
+    }
+}
+-(void)reloadBarBackgroundColor:(nullable UIColor *)color{
+    if (@available(iOS 13.0, *)) {
+        [self setRr_OrginBackgroundColor:color];
+        UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
+        UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
+
+        if (scrollEdgeAppearance.backgroundEffect == nil) {
+            scrollEdgeAppearance.backgroundColor = nil;
+        }else {
+            scrollEdgeAppearance.backgroundColor = color;
+        }
+        if (standardAppearance.backgroundEffect == nil) {
+            standardAppearance.backgroundColor = nil;
+        }else {
+            standardAppearance.backgroundColor = color;
+        }
+    } else {
+        [self setBarTintColor:color];
+    }
+}
+-(void)reloadBarTitleTextAttributes:(nullable NSDictionary<NSAttributedStringKey, id>*)titleTextAttributes{
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
+        UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
+
+        scrollEdgeAppearance.titleTextAttributes = titleTextAttributes;
+        
+        standardAppearance.titleTextAttributes = titleTextAttributes;
+        
+    } else {
+        [self setTitleTextAttributes:titleTextAttributes];
+    }
+}
+
+-(void)_reloadBarTransparent:(BOOL)transparent {
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *scrollEdgeAppearance = [self _lazyScrollEdgeAppearance];
+        UINavigationBarAppearance *standardAppearance = [self _lazyStandardAppearance];
+        
+        if (transparent) {
+            scrollEdgeAppearance.backgroundEffect = nil;
+            standardAppearance.backgroundEffect = nil;
+        }else {
+            UINavigationBarAppearance *temp = [[UINavigationBarAppearance alloc] init];
+            scrollEdgeAppearance.backgroundEffect = temp.backgroundEffect;
+            standardAppearance.backgroundEffect = temp.backgroundEffect;
+        }
+        [self reloadBarBackgroundColor:[self rr_OrginBackgroundColor]];
+    }
+}
+@end
+
 #define kNavigationCompletionBlockKey @"completionBlk"
 static UIImage *sNavigationBarTransparentImage;
 
+#pragma mark - UINavigationController + RRSet
 @implementation UINavigationController (RRSet)
 
 +(void)initialize
@@ -144,14 +254,17 @@ static UIImage *sNavigationBarTransparentImage;
         }
         img = sNavigationBarTransparentImage;
     }
-    
-    [self.navigationBar setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
-    [self.navigationBar setShadowImage:img];
-    
+    [self.navigationBar _reloadBarTransparent:transparent];
+    [self.navigationBar reloadBarBackgroundImage:img];
+    [self.navigationBar reloadBarShadowImage:img];
 }
 
 -(BOOL)isNavigationBarTransparent
 {
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *standardAppearance = [self.navigationBar _lazyStandardAppearance];
+        return !standardAppearance.backgroundEffect;
+    }
     UIImage *bgImage = [self.navigationBar backgroundImageForBarMetrics:UIBarMetricsDefault];
     return [bgImage isEqual:sNavigationBarTransparentImage];
 }

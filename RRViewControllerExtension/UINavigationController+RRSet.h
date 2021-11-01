@@ -10,6 +10,14 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@interface UINavigationBar (RRSet)
+-(void)reloadBarBackgroundImage:(nullable UIImage *)img;
+-(void)reloadBarShadowImage:(nullable UIImage *)img;
+-(void)reloadBarBackgroundColor:(nullable UIColor *)color;
+-(void)reloadBarTitleTextAttributes:(nullable NSDictionary<NSAttributedStringKey, id>*)titleTextAttributes;
+@end
+
+
 
 @interface UINavigationController (RRSet)
 

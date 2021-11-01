@@ -160,6 +160,8 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_viewDidLoad];
     
+    self.rr_visibleState = RRViewControllerViewDidLoad;
+    
     //发现有些vc并不会调用exchg_loadView方法，所以这里再加一步保障
     if([self shouldShowBackItem])
         [self showNavigationBackItem:YES];
@@ -174,6 +176,8 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_viewWillAppear:animated];
 
+    self.rr_visibleState = RRViewControllerWillAppear;
+    
     [self updateNavigationAppearance:animated];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     // self.navigationController.interactivePopGestureRecognizer.enabled = YES;
@@ -187,7 +191,9 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_viewDidAppear:animated];
     
-    objc_setAssociatedObject(self, @"viewAppear", @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    self.rr_visibleState = RRViewControllerDidAppear;
+    
+//    objc_setAssociatedObject(self, @"viewAppear", @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     [self setNeedsStatusBarAppearanceUpdate];
 
@@ -200,6 +206,8 @@ __weak UIView *sMemleakWarningView;
     
     [self exchg_viewWillDisappear:animated];
     
+    self.rr_visibleState = RRViewControllerWillDisappear;
+    
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewWillDisappear animated:animated];
     
 }
@@ -208,7 +216,10 @@ __weak UIView *sMemleakWarningView;
 {
     [self invokeBeforeHookForLifecycle:RRViewControllerLifeCycleViewDidDisappear animated:animated];
     [self exchg_viewDidDisappear:animated];
-    objc_setAssociatedObject(self, @"viewAppear", @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    self.rr_visibleState = RRViewControllerDidDisappear;
+    
+//    objc_setAssociatedObject(self, @"viewAppear", @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewDidDisappear animated:animated];
     
 #if VC_MemoryLeakDetectionEnabled
@@ -222,10 +233,20 @@ __weak UIView *sMemleakWarningView;
 
 -(BOOL)isViewAppearing
 {
-    NSNumber *v = objc_getAssociatedObject(self, @"viewAppear");
-    return v.boolValue;
+//    NSNumber *v = objc_getAssociatedObject(self, @"viewAppear");
+//    return v.boolValue;
+    RRViewControllerVisibleState state = self.rr_visibleState;
+    return state >= RRViewControllerDidAppear && state <= RRViewControllerWillDisappear;
 }
 
+
+static char kAssociatedObjectKey_visibleState;
+-(void)setRr_visibleState:(RRViewControllerVisibleState)rr_visibleState {
+    objc_setAssociatedObject(self, &kAssociatedObjectKey_visibleState, @(rr_visibleState), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+-(RRViewControllerVisibleState)rr_visibleState {
+    return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_visibleState)) unsignedIntegerValue];
+}
 
 #pragma mark-
 
@@ -297,20 +318,20 @@ __weak UIView *sMemleakWarningView;
 //#warning 这里是否欠妥，如果设置为nil的话，是不是把上次设定的默认图片也覆盖了
         //set navigation bar background image
         UIImage *bgImage = [self preferredNavigationBarBackgroundImage];
-        [self.navigationController.navigationBar setBackgroundImage:bgImage forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setShadowImage:nil];
+        [self.navigationController.navigationBar reloadBarBackgroundImage:bgImage];
+        [self.navigationController.navigationBar reloadBarShadowImage:nil];
     }
     
     
     //set navigation bar tintColor
-    [self.navigationController.navigationBar setBarTintColor:[self preferredNavatationBarColor]];
+    [self.navigationController.navigationBar reloadBarBackgroundColor:[self preferredNavatationBarColor]];
     
     //set navigation bar item tintColor
     UIColor *barItemTintColor = [self preferredNavigationItemColor];
     [self.navigationController.navigationBar setTintColor:barItemTintColor];
     
     //set navigation bar title attributed
-    [self.navigationController.navigationBar setTitleTextAttributes:[self preferredNavigationTitleTextAttributes]];
+    [self.navigationController.navigationBar reloadBarTitleTextAttributes:[self preferredNavigationTitleTextAttributes]];
     
 }
 
