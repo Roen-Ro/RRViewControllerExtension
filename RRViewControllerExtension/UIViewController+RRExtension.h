@@ -26,6 +26,16 @@ typedef enum {
     
 }RRViewControllerLifeCycleMethod;
 
+typedef NS_OPTIONS(NSUInteger, RRViewControllerVisibleState) {
+    RRViewControllerUnknow        = 1 << 0,   // 初始化完成但尚未触发 viewDidLoad
+    RRViewControllerViewDidLoad   = 1 << 1,   // 触发了 viewDidLoad
+    RRViewControllerWillAppear    = 1 << 2,   // 触发了 viewWillAppear
+    RRViewControllerDidAppear     = 1 << 3,   // 触发了 viewDidAppear
+    RRViewControllerWillDisappear = 1 << 4,   // 触发了 viewWillDisappear
+    RRViewControllerDidDisappear  = 1 << 5,   // 触发了 viewDidDisappear
+    
+    RRViewControllerVisible       = RRViewControllerWillAppear | RRViewControllerDidAppear,// 表示是否处于可视范围，判断时请用 & 运算，例如 rr_visibleState & RRViewControllerVisible
+};
 
 //do not enable this macro in release mode
 #if DEBUG
@@ -36,13 +46,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^RRViewControllerLifecycleHookBlock) (UIViewController *viewController, BOOL animated);
 
-
-
 @interface UIViewController (RRExtension) <UIGestureRecognizerDelegate>
 
 @property (nonatomic,readonly) BOOL isViewAppearing;
 
-
+/**
+ 获取当前 viewController 所处的的生命周期阶段（也即 viewDidLoad/viewWillApear/viewDidAppear/viewWillDisappear/viewDidDisappear）
+ PS 在原有方法调用结束后才会赋值
+ */
+@property (nonatomic, readonly) RRViewControllerVisibleState rr_visibleState;
 #pragma mark- UINavigation related
 /*----------------methods below are for sublclass to override ------------*/
 
