@@ -9,7 +9,7 @@
 #import <objc/runtime.h>
 
 #pragma mark - UINavigationController (_SetupProperty)
-UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) NS_SWIFT_UI_ACTOR
+UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) //NS_SWIFT_UI_ACTOR
 @implementation UINavigationBar (_SetupProperty)
 -(UINavigationBarAppearance*)_lazyScrollEdgeAppearance {
     UINavigationBarAppearance *scrollEdgeAppearance = self.scrollEdgeAppearance;
