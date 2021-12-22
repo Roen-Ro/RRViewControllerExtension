@@ -50,6 +50,17 @@ typedef void (^RRViewControllerLifecycleHookBlock) (UIViewController *viewContro
 
 @property (nonatomic,readonly) BOOL isViewAppearing;
 
+//the name used for the viewcontroller's view statistics, default is the viewcontroller's class name
+@property (nonatomic,strong) NSString *statisticName;
+
+/**
+ Whether the viewcontroller should be considered while doing the view statistics.
+ default value: NO for those who have children viewcontrollers such as UINavigationController, UITabViewController etc. YES for ohters that doesn't have any children viewcontrollers
+ */
+@property (nonatomic, getter = statisticEnabled) BOOL enableStatistic;
+
+
+
 /**
  获取当前 viewController 所处的的生命周期阶段（也即 viewDidLoad/viewWillApear/viewDidAppear/viewWillDisappear/viewDidDisappear）
  PS 在原有方法调用结束后才会赋值
