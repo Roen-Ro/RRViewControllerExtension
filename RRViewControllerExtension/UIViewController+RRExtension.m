@@ -5,18 +5,13 @@
 #import "UIViewController+RRExtension.h"
 #import <objc/runtime.h>
 
-@interface RRViewControllerStatistic : NSObject<NSCopying>
-@property (nonatomic) CFAbsoluteTime stayTime; //页面停留时间
-@property (nonatomic) NSInteger viewCount; //页面访问次数
-@end
 
-@implementation RRViewControllerStatistic
--(instancetype)copyWithZone:(NSZone *)zone {
-    RRViewControllerStatistic *s = [[[self class] alloc] init];
-    s.stayTime = self.stayTime;
-    s.viewCount = self.viewCount;
-    return  s;
-}
+//RRStatisticBridge只是用来
+@interface UIViewController (RRStatisticBridge)
+//只在viewWillDisappear:方法中调用
++(void)staticviewWillDisappearForViewController:(UIViewController *)viewController;
+//只在-viewDidAppear:方法中调用
++(void)staticviewDidAppearForViewController:(UIViewController *)viewController;
 @end
 
 
@@ -59,6 +54,11 @@ __weak UIView *sMemleakWarningView;
         
         originalSelector = @selector(viewDidDisappear:);
         swizzledSelector = @selector(exchg_viewDidDisappear:);
+        method_exchangeImplementations(class_getInstanceMethod(class, originalSelector), class_getInstanceMethod(class,swizzledSelector));
+        
+        
+        originalSelector = @selector(willMoveToParentViewController:);
+        swizzledSelector = @selector(exchg_willMoveToParentViewController:);
         method_exchangeImplementations(class_getInstanceMethod(class, originalSelector), class_getInstanceMethod(class,swizzledSelector));
         
 #if VC_MemoryLeakDetectionEnabled
@@ -206,7 +206,7 @@ __weak UIView *sMemleakWarningView;
     
     self.rr_visibleState = RRViewControllerDidAppear;
     
-    [UIViewController staticEnterViewController:self];
+    [UIViewController staticviewWillDisappearForViewController:self];
     
 //    objc_setAssociatedObject(self, @"viewAppear", @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -222,6 +222,8 @@ __weak UIView *sMemleakWarningView;
     [self exchg_viewWillDisappear:animated];
     
     self.rr_visibleState = RRViewControllerWillDisappear;
+    
+    [UIViewController staticviewWillDisappearForViewController:self];
     
     [self invokeAfterHookForLifecycle:RRViewControllerLifeCycleViewWillDisappear animated:animated];
     
@@ -246,6 +248,9 @@ __weak UIView *sMemleakWarningView;
 #endif
 }
 
+-(void)exchg_willMoveToParentViewController:(UIViewController *)parent {
+    [self exchg_willMoveToParentViewController:parent];
+}
 #pragma mark- extended properties
 -(BOOL)isViewAppearing
 {
@@ -262,19 +267,6 @@ static char kAssociatedObjectKey_visibleState;
 }
 -(RRViewControllerVisibleState)rr_visibleState {
     return [((NSNumber *)objc_getAssociatedObject(self, &kAssociatedObjectKey_visibleState)) unsignedIntegerValue];
-}
-
--(void)setStatisticName:(NSString *)statisticName {
-    IMP key = class_getMethodImplementation([self class],@selector(statisticName));
-    objc_setAssociatedObject(self, key, statisticName, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
--(NSString *)statisticName {
-    IMP key = class_getMethodImplementation([self class],@selector(statisticName));
-    id obj = objc_getAssociatedObject(self,key);
-    if(!obj)
-        obj = NSStringFromClass(self.class);
-    return obj;
 }
 
 
@@ -646,90 +638,6 @@ static char kAssociatedObjectKey_visibleState;
     return nil;
 #endif
 }
-
-#pragma mark- page statistics
-
-
-
--(BOOL)statisticEnabled {
-    IMP key = class_getMethodImplementation([self class],@selector(statisticEnabled));
-    NSNumber *num = objc_getAssociatedObject(self,key);
-    if(num) {
-        return num.boolValue;
-    }
-    else {
-        return self.childViewControllers.count == 0;
-    }
-}
-
--(void)setEnableStatistic:(BOOL)enableStatistic {
-    IMP key = class_getMethodImplementation([self class],@selector(statisticEnabled));
-    objc_setAssociatedObject(self, key, [NSNumber numberWithBool:enableStatistic], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-/**
- 注意这里不能以-viewDidDisappear:两个方法作为页面退出依据.
- 因为present有时候是不会触发presentingViewController的viewDidDisappear方法的
- */
-
-static CFAbsoluteTime sRRStatRefTime;
-static NSString *sRRStatTopStatisticName;//当前
-static NSMutableDictionary *sRRStatDic;
-static NSMutableArray *sRRStatStack;
-+(void)staticEnterViewController:(UIViewController *)viewController {
-    
-    if(!sRRStatStack)
-        sRRStatStack = [NSMutableArray arrayWithCapacity:64];
-    
-    if(viewController.statisticEnabled) {
-#error 即使不做当前页面的统计，也要统计上一个页面的停留时间
-        return;
-    }
-    
-    CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
-    if(sRRStatRefTime < 0.1)
-        sRRStatRefTime = t0;
-    
-    CFAbsoluteTime dur = t0 - sRRStatRefTime;
-    if(dur > 1) {
-        RRViewControllerStatistic *stc = [sRRStatDic objectForKey:viewController.statisticName];
-        
-    }
-    else {
-        
-    }
-    
-    sRRStatRefTime = t0;
-    sRRStatTopStatisticName = viewController.statisticName;
-    
-}
-
-+(void)staticLeaveViewController:(UIViewController *)viewController {
-    if(viewController.statisticEnabled)
-        return;
-    
-    CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
-}
-
-+(void)addViewCount:(int)count stayTime:(NSTimeInterval)time for:(UIViewController *)viewController {
-    
-    if(!sRRStatDic) {
-#error 首先从本地读取历史存储记录
-        sRRStatDic = [NSMutableDictionary dictionaryWithCapacity:128];
-    }
-    
-    RRViewControllerStatistic *stc = [sRRStatDic objectForKey:viewController.statisticName];
-    if(!stc)
-        stc = [RRViewControllerStatistic new];
-    
-    stc.viewCount += count;
-    stc.stayTime += time;
-    
-#error 将统计信息固化保存在本地
-}
-
-//TODO:前后台切换时，停留时间要减去在后台时间
-
 
 @end
 

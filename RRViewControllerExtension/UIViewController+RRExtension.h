@@ -5,7 +5,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UINavigationController+RRSet.h"
-
+#import "UIViewController+RRStatistics.h"
 
 typedef enum {
     
@@ -49,16 +49,6 @@ typedef void (^RRViewControllerLifecycleHookBlock) (UIViewController *viewContro
 @interface UIViewController (RRExtension) <UIGestureRecognizerDelegate>
 
 @property (nonatomic,readonly) BOOL isViewAppearing;
-
-//the name used for the viewcontroller's view statistics, default is the viewcontroller's class name
-@property (nonatomic,strong) NSString *statisticName;
-
-/**
- Whether the viewcontroller should be considered while doing the view statistics.
- default value: NO for those who have children viewcontrollers such as UINavigationController, UITabViewController etc. YES for ohters that doesn't have any children viewcontrollers
- */
-@property (nonatomic, getter = statisticEnabled) BOOL enableStatistic;
-
 
 
 /**
