@@ -1,12 +1,13 @@
 # [RRViewControllerExtension](https://github.com/Roen-Ro/RRViewControllerExtension)
 
 
-A lightweight UIViewController category extension for UINavigationBar  appearance management, view controller push/pop/dismiss management, memory leak detection and other convenient property and methods. Benefits include:
+A lightweight UIViewController category extension for UINavigationBar  appearance management, view controller push/pop/dismiss management, ViewController view statistics，memory leak detection and other convenient property and methods. Benefits include:
 
 - Manage `UINavigationBar` appearance gracefully
 - Automatic viewController memory leak detection with out any code modification.
 - Push/pop with completion block call back block
 - `UIViewController` life cycle method hook
+- ViewController view statistics
 - Other convenient properties
 
 Reference to [this demo](https://github.com/Roen-Ro/RRViewControllerExtension) on github, [中文介绍戳这里](https://www.jianshu.com/p/59aba25692fe)。

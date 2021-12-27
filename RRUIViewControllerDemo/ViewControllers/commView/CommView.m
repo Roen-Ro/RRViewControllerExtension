@@ -13,6 +13,7 @@
 #import "DynamicConfigViewController.h"
 #import "DEMO_ImageNaviBarViewController.h"
 #import "DEMO_normalMemoryLeakViewController.h"
+#import "StatisticsViewController.h"
 
 @implementation CommView
 {
@@ -68,6 +69,13 @@
         NSLog(@"%@ dismiss completed",NSStringFromClass([self.viewController class]));
     }];
 }
+
+- (IBAction)showStatistics:(id)sender {
+    StatisticsViewController *svc = [[StatisticsViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:svc];
+    [self.viewController presentViewController:nvc animated:YES completion:nil];
+}
+
 
 -(void)pushToViewControllerOfClass:(NSString *)classStr
 {

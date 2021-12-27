@@ -206,7 +206,7 @@ __weak UIView *sMemleakWarningView;
     
     self.rr_visibleState = RRViewControllerDidAppear;
     
-    [UIViewController staticviewWillDisappearForViewController:self];
+    [UIViewController staticviewDidAppearForViewController:self];
     
 //    objc_setAssociatedObject(self, @"viewAppear", @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     

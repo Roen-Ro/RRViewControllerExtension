@@ -8,6 +8,7 @@
 #define RRViewControllerExtension_h
 
 #import "UIViewController+RRExtension.h"
+#import "UIViewController+RRStatistics.h"
 #import "UINavigationController+RRSet.h"
 
 #endif /* RRViewControllerExtension_h */

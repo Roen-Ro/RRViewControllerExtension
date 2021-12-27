@@ -21,4 +21,8 @@
     return YES;
 }
 
+-(nullable UIColor *)preferredNavigationItemColor {
+    return UIColor.cyanColor;
+}
+
 @end

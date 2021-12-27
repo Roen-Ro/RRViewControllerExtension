@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+@interface RRViewControllerStatistic : NSObject<NSCopying,NSCoding>
+@property (nonatomic) CFAbsoluteTime enterTime; //The time entered the viewController
+@property (nonatomic) NSTimeInterval stayTime; //Stay duration in the viewController for each statistic time
+@property (nonatomic) NSInteger viewCount; //total view count for a viewController
+
+@end
+
+
 
 @interface UIViewController (RRStatistics)
 
@@ -23,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) BOOL isInModalPresenting;
 
+//Read statistics data
++(NSDictionary <NSString *, RRViewControllerStatistic *>*)rrStatisticsData;
+
+//stringified statistic data for analysisy purpose
++(NSString *)stringifyStatistics;
 
 //Only call this method in UIApplicationDelegate's -applicationDidBecomeActive:
 +(void)RRStaticAppEnterForeground;
@@ -30,5 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 //Only call this method in UIApplicationDelegate's -applicationDidEnterBackground:
 +(void)RRStaticAppEnterbackground;
 @end
+
+
+
 
 NS_ASSUME_NONNULL_END

@@ -26,6 +26,7 @@
 		9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */; };
 		9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */; };
 		9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */; };
+		B15E7EF9277995800065BF50 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B15E7EF8277995800065BF50 /* StatisticsViewController.m */; };
 		B1E324CB2774464F002AD518 /* UIViewController+RRStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E324CA2774464F002AD518 /* UIViewController+RRStatistics.m */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,8 @@
 		9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRViewControllerExtension.podspec; sourceTree = "<group>"; };
 		9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchableViewController.h; sourceTree = "<group>"; };
 		9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchableViewController.m; sourceTree = "<group>"; };
+		B15E7EF7277995800065BF50 /* StatisticsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		B15E7EF8277995800065BF50 /* StatisticsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		B1E324C92774464F002AD518 /* UIViewController+RRStatistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RRStatistics.h"; sourceTree = "<group>"; };
 		B1E324CA2774464F002AD518 /* UIViewController+RRStatistics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RRStatistics.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +142,8 @@
 				9F73EB33215100930046B7D2 /* DEMO_ImageNaviBarViewController.m */,
 				9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */,
 				9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */,
+				B15E7EF7277995800065BF50 /* StatisticsViewController.h */,
+				B15E7EF8277995800065BF50 /* StatisticsViewController.m */,
 				9F73EB3D215213C50046B7D2 /* DynamicConfig */,
 			);
 			path = ViewControllers;
@@ -253,6 +258,7 @@
 				9FCFF6C521C0B03500F92633 /* DEMO_TransparentNaviBarViewController.m in Sources */,
 				9F73EAF62150ECCE0046B7D2 /* AppDelegate.m in Sources */,
 				9F73EB34215100930046B7D2 /* DEMO_ImageNaviBarViewController.m in Sources */,
+				B15E7EF9277995800065BF50 /* StatisticsViewController.m in Sources */,
 				9FEF4CC92150F4B8009292EC /* DynamicConfigViewController.m in Sources */,
 				B1E324CB2774464F002AD518 /* UIViewController+RRStatistics.m in Sources */,
 				9FF94A4A2154B76200FC8F22 /* UINavigationController+RRSet.m in Sources */,

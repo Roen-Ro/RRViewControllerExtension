@@ -9,12 +9,6 @@
 #import "UIViewController+RRStatistics.h"
 #import <objc/runtime.h>
 
-@interface RRViewControllerStatistic : NSObject<NSCopying>
-@property (nonatomic) CFAbsoluteTime enterTime; //页面进入时间戳
-@property (nonatomic) CFAbsoluteTime stayTime; //页面停留时间,本次启动后总的累计
-@property (nonatomic) NSInteger viewCount; //页面访问次数
-
-@end
 
 @implementation RRViewControllerStatistic
 -(instancetype)copyWithZone:(NSZone *)zone {
@@ -24,6 +18,20 @@
     s.enterTime = self.enterTime;
     return  s;
 }
+
+-(instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super init];
+    _enterTime = 0;
+    _stayTime = [coder decodeDoubleForKey:@"stayTime"];
+    _viewCount = [coder decodeIntegerForKey:@"viewCount"];
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeDouble:_stayTime forKey:@"stayTime"];
+    [coder encodeInteger:_viewCount forKey:@"viewCount"];
+}
+
 @end
 
 
@@ -50,6 +58,10 @@
         return num.boolValue;
     }
     else {
+        
+        if([self isKindOfClass:[UIAlertController class]])
+            return NO;
+        
         return self.childViewControllers.count == 0;
     }
 }
@@ -60,9 +72,19 @@
 }
 
 -(BOOL)isInModalPresenting {
-    if(self.presentingViewController) {
-        if(self.modalPresentationStyle == UIModalPresentationFullScreen
-           || self.modalPresentationStyle == UIModalPresentationCurrentContext)
+    
+    //Tips:如果self是present包裹在navigationController中的vc,那么:\
+    1> self.presentingViewController和self.navigationController.presentingViewController都是同一个 \
+    2> self.modalPresentationStyle和self.navigationController.modalPresentationStyle不一定相等
+    
+    if(!self.presentingViewController)
+        return NO;
+    
+    UIViewController *actualPresentedVc = self.presentingViewController.presentedViewController;
+    
+    if(actualPresentedVc.presentingViewController) {
+        if(actualPresentedVc.modalPresentationStyle == UIModalPresentationFullScreen
+           || actualPresentedVc.modalPresentationStyle == UIModalPresentationCurrentContext)
             return NO;
         else
             return YES;
@@ -101,7 +123,7 @@ viewDidAppear:
  */
 
 
-static NSMutableDictionary *sRRStatDic;
+static NSMutableDictionary <NSString *, RRViewControllerStatistic *>*sRRStatDic;
 static NSPointerArray *sRRStatStack;
 __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
 
@@ -110,14 +132,56 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     if(!sRRStatStack)
         sRRStatStack = [NSPointerArray weakObjectsPointerArray];
     
-    if(!sRRStatDic) {
-        sRRStatDic = [NSMutableDictionary dictionaryWithCapacity:128];
+    [self rrReadStatistics];
+}
+
++(void)rrEndStatisticViewController:(UIViewController *)viewController {
+   
+#warning test
+    NSLog(@"----->> end:%@",NSStringFromClass(viewController.class));
+    
+    if(!viewController)
+        return;
+        
+    CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
+
+    RRViewControllerStatistic *stc = [sRRStatDic objectForKey:viewController.statisticName];
+    if(stc.enterTime > 0) {
+        stc.stayTime += (t0 - stc.enterTime);
     }
     
+    sRRStatCurrentViewController = nil;
+}
+
++(void)rrBeginStatisticViewController:(nonnull UIViewController *)viewController fromRecover:(BOOL)revocer {
+    
+    CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
+    
+    RRViewControllerStatistic *stc = [sRRStatDic objectForKey:viewController.statisticName];
+    if(!stc) {
+        if(revocer) {
+            return; //如果是恢复的话，之前没有记录就不再做任何事情，直接返回
+        }
+        else {
+            stc = [RRViewControllerStatistic new];
+            [sRRStatDic setObject:stc forKey:viewController.statisticName];
+        }
+    }
+    
+    stc.viewCount += 1;
+    stc.enterTime = t0;
+    
+    sRRStatCurrentViewController = viewController;
+    
+#warning test
+    NSLog(@"*****>> Begin:%@ recover:%d",NSStringFromClass(viewController.class),revocer);
 }
 
 //只在-viewDidAppear:方法中调用
 +(void)staticviewDidAppearForViewController:(UIViewController *)viewController {
+    
+    if([self rrShouldIgnoreSysViewController:viewController])
+        return;
 
     //viewController是否为modal模式,将正在统计的vc入栈
     if(viewController.isInModalPresenting) {
@@ -125,77 +189,72 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
             [sRRStatStack addPointer:(__bridge void * _Nullable)(sRRStatCurrentViewController)];
     }
     
-    CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
+#if DEBUG
+#warning test
+    NSLog(@">>>>> DidAppear[%@] sRRStatStack.count %zu",NSStringFromClass(viewController.class),sRRStatStack.count);
+#endif
     
     //停止正在统计vc的统计
-    if(sRRStatCurrentViewController) {
-        RRViewControllerStatistic *stc = [sRRStatDic objectForKey:sRRStatCurrentViewController.statisticName];
-        if(stc.enterTime > 0) {
-            stc.stayTime += (t0 - stc.enterTime);
-        }
-    }
-    sRRStatCurrentViewController = nil;
-    
+    [self rrEndStatisticViewController:sRRStatCurrentViewController];
     
     //viewController是否需要统计
     if(viewController.statisticEnabled) {
-        RRViewControllerStatistic *stc = [sRRStatDic objectForKey:viewController.statisticName];
-        if(!stc) {
-            stc = [RRViewControllerStatistic new];
-            [sRRStatDic setObject:stc forKey:viewController.statisticName];
-        }
-        
-        stc.viewCount += 1;
-        stc.enterTime = t0;
-        
-        sRRStatCurrentViewController = viewController;
+        [self rrBeginStatisticViewController:viewController fromRecover:NO];
     }
+    
+    [self rrSaveStatistics];
 }
 
 //只在viewWillDisappear:方法中调用
 +(void)staticviewWillDisappearForViewController:(UIViewController *)viewController {
     
-    CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
+    
+    if([self rrShouldIgnoreSysViewController:viewController])
+        return;
     
     //vc是否正在统计中，是的话停止统计
     if(viewController == sRRStatCurrentViewController) {
-        RRViewControllerStatistic *stc = [sRRStatDic objectForKey:sRRStatCurrentViewController.statisticName];
-        if(stc.enterTime > 0) {
-            stc.stayTime += (t0 - stc.enterTime);
-        }
-        
-        sRRStatCurrentViewController = nil;
+        [self rrEndStatisticViewController:viewController];
     }
     
+    
+#if DEBUG
+#warning test
+    NSLog(@"+++++ WillDisappear[%@] sRRStatStack.count %zu",NSStringFromClass(viewController.class),sRRStatStack.count);
+#endif
+    
+    //Tips:NavigationCotroller是modal模式情况下，其willDisappear会先于其子vc调用
     //viewController是否为modal模式,是的话恢复栈顶
     if(viewController.isInModalPresenting && sRRStatStack.count > 0) {
+        
+        if(sRRStatCurrentViewController) {
+            [self rrEndStatisticViewController:sRRStatCurrentViewController];
+        }
+        
         NSInteger idx = sRRStatStack.count-1;
         UIViewController *rVc = [sRRStatStack pointerAtIndex:idx];
         if(rVc) {
-            RRViewControllerStatistic *stc = [sRRStatDic objectForKey:rVc.statisticName];
-            if(stc) {
-                stc.viewCount += 1;
-                stc.enterTime = t0;
-            }
-            
-            sRRStatCurrentViewController = rVc;
+            [self rrBeginStatisticViewController:rVc fromRecover:YES];
             [sRRStatStack removePointerAtIndex:idx];
         }
+        
+#warning test
+        if(sRRStatCurrentViewController == nil) {
+            NSLog(@"NULL NULL NULL NULL NULL NULL NULL NULL ");
+        }
     }
+    
+    [self rrSaveStatistics];
+    
+    
 }
 
 +(void)RRStaticAppEnterbackground {
     
     //停止记录并入栈
     if(sRRStatCurrentViewController) {
-        CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
         [sRRStatStack addPointer:(__bridge void * _Nullable)(sRRStatCurrentViewController)];
-        RRViewControllerStatistic *stc = [sRRStatDic objectForKey:sRRStatCurrentViewController.statisticName];
-        if(stc.enterTime > 0) {
-            stc.stayTime += (t0 - stc.enterTime);
-        }
-        
-        sRRStatCurrentViewController = nil;
+        [self rrEndStatisticViewController:sRRStatCurrentViewController];
     }
 }
 
@@ -203,23 +262,80 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     
     //恢复计入并出栈
     if(sRRStatStack.count > 0) {
-        CFAbsoluteTime t0 = CFAbsoluteTimeGetCurrent();
         NSInteger idx = sRRStatStack.count-1;
         UIViewController *rVc = [sRRStatStack pointerAtIndex:idx];
         if(rVc) {
-            RRViewControllerStatistic *stc = [sRRStatDic objectForKey:rVc.statisticName];
-            if(stc) {
-                stc.viewCount += 1;
-                stc.enterTime = t0;
-            }
-            
-            sRRStatCurrentViewController = rVc;
+            [self rrBeginStatisticViewController:rVc fromRecover:YES];
             [sRRStatStack removePointerAtIndex:idx];
         }
     }
 }
 
++(BOOL)rrShouldIgnoreSysViewController:(UIViewController *)viewController {
+    
+    NSArray *classes = @[@"UIInputWindowController",
+                         @"UIEditingOverlayViewController",
+                         @"UIAlertController",
+                         @"UISystemKeyboardDockController",
+                         @"UINavigationController",
+                         @"UITabBarController",
+                         @"UIPredictionViewController"];
+    for(NSString *s in classes) {
+//        Class cls = NSClassFromString(s);
+//        if([s isKindOfClass:cls])
+//            return YES;
+        
+        NSString *clsStr = NSStringFromClass(viewController.class);
+        if([s isEqualToString:clsStr])
+            return YES;
+    }
+    return NO;
+}
 
 
++(NSURL *)rrStatisticsArchiveUrl {
+    NSURL *libraryDir = [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+    return [libraryDir URLByAppendingPathComponent:@"RR.Statistics.arc"];
+}
+
++(void)rrReadStatistics {
+    if(!sRRStatDic) {
+        sRRStatDic = [NSKeyedUnarchiver unarchiveObjectWithFile:[self rrStatisticsArchiveUrl].path];
+        if(!sRRStatDic)
+            sRRStatDic = [NSMutableDictionary dictionaryWithCapacity:128];
+    }
+}
+
++(void)rrSaveStatistics {
+    [NSKeyedArchiver archiveRootObject:sRRStatDic toFile:[self rrStatisticsArchiveUrl].path];
+}
+
++(NSDictionary <NSString *, RRViewControllerStatistic *>*)rrStatisticsData {
+    return sRRStatDic.copy;
+}
+
++(NSString *)stringifyStatistics {
+    NSArray *allKeys = [sRRStatDic allKeys];
+    NSArray *sortedNames = [allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        
+        RRViewControllerStatistic *s1 = [sRRStatDic objectForKey:(NSString *)obj1];
+        RRViewControllerStatistic *s2 = [sRRStatDic objectForKey:(NSString *)obj2];
+        
+        if(s1.stayTime > s2.stayTime)
+            return NSOrderedAscending;
+        else if(s1.stayTime < s2.stayTime)
+            return NSOrderedDescending;
+        else
+            return NSOrderedSame;
+    }];
+    
+    NSMutableString *mString = [NSMutableString stringWithCapacity:5000];
+    for(NSString *n in sortedNames) {
+        RRViewControllerStatistic *s1 = [sRRStatDic objectForKey:n];
+        [mString appendFormat:@"%@: stayed %.3f(min), viewd %zu;\n",n,s1.stayTime/60.0,s1.viewCount];
+    }
+    
+    return mString;
+}
 
 @end
