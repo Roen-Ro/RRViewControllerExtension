@@ -137,8 +137,7 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
 
 +(void)rrEndStatisticViewController:(UIViewController *)viewController {
    
-#warning test
-    NSLog(@"----->> end:%@",NSStringFromClass(viewController.class));
+  //  NSLog(@"----->> end:%@",NSStringFromClass(viewController.class));
     
     if(!viewController)
         return;
@@ -173,8 +172,7 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     
     sRRStatCurrentViewController = viewController;
     
-#warning test
-    NSLog(@"*****>> Begin:%@ recover:%d",NSStringFromClass(viewController.class),revocer);
+   // NSLog(@"*****>> Begin:%@ recover:%d",NSStringFromClass(viewController.class),revocer);
 }
 
 //只在-viewDidAppear:方法中调用
@@ -190,8 +188,7 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     }
     
 #if DEBUG
-#warning test
-    NSLog(@">>>>> DidAppear[%@] sRRStatStack.count %zu",NSStringFromClass(viewController.class),sRRStatStack.count);
+ //   NSLog(@">>>>> DidAppear[%@] sRRStatStack.count %zu",NSStringFromClass(viewController.class),sRRStatStack.count);
 #endif
     
     //停止正在统计vc的统计
@@ -219,8 +216,7 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     
     
 #if DEBUG
-#warning test
-    NSLog(@"+++++ WillDisappear[%@] sRRStatStack.count %zu",NSStringFromClass(viewController.class),sRRStatStack.count);
+  //  NSLog(@"+++++ WillDisappear[%@] sRRStatStack.count %zu",NSStringFromClass(viewController.class),sRRStatStack.count);
 #endif
     
     //Tips:NavigationCotroller是modal模式情况下，其willDisappear会先于其子vc调用
@@ -236,11 +232,6 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
         if(rVc) {
             [self rrBeginStatisticViewController:rVc fromRecover:YES];
             [sRRStatStack removePointerAtIndex:idx];
-        }
-        
-#warning test
-        if(sRRStatCurrentViewController == nil) {
-            NSLog(@"NULL NULL NULL NULL NULL NULL NULL NULL ");
         }
     }
     
@@ -333,7 +324,7 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     int i = 0;
     for(NSString *n in sortedNames) {
         RRViewControllerStatistic *s1 = [sRRStatDic objectForKey:n];
-        [mString appendFormat:@"%@: stayed %.3f(min), viewd %zu;\n",n,s1.stayTime/60.0,s1.viewCount];
+        [mString appendFormat:@"[%@: stayed %.3f(mins), viewed %zu];\n",n,s1.stayTime/60.0,s1.viewCount];
         i++;
         if(i >= topCount)
             break;
