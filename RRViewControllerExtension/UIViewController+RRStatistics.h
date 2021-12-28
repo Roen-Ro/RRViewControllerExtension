@@ -34,8 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 //Read statistics data
 +(NSDictionary <NSString *, RRViewControllerStatistic *>*)rrStatisticsData;
 
-//stringified statistic data for analysisy purpose
-+(NSString *)stringifyStatistics;
+//stringified statistic data with top (stay time) records count
++(NSString *)stringifyStatisticsWithTopStayedByCount:(unsigned int)topCount;
 
 //Only call this method in UIApplicationDelegate's -applicationDidBecomeActive:
 +(void)RRStaticAppEnterForeground;

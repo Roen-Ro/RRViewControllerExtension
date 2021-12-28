@@ -26,7 +26,7 @@
     [self.view addSubview:_textView];
     
     
-    NSString *s = [UIViewController stringifyStatistics];
+    NSString *s = [UIViewController stringifyStatisticsWithTopStayedByCount:20];
     _textView.text = s;
 }
 

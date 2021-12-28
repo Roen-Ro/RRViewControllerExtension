@@ -314,7 +314,7 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     return sRRStatDic.copy;
 }
 
-+(NSString *)stringifyStatistics {
++(NSString *)stringifyStatisticsWithTopStayedByCount:(unsigned int)topCount {
     NSArray *allKeys = [sRRStatDic allKeys];
     NSArray *sortedNames = [allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         
@@ -330,9 +330,13 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
     }];
     
     NSMutableString *mString = [NSMutableString stringWithCapacity:5000];
+    int i = 0;
     for(NSString *n in sortedNames) {
         RRViewControllerStatistic *s1 = [sRRStatDic objectForKey:n];
         [mString appendFormat:@"%@: stayed %.3f(min), viewd %zu;\n",n,s1.stayTime/60.0,s1.viewCount];
+        i++;
+        if(i >= topCount)
+            break;
     }
     
     return mString;
