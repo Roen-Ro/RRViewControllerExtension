@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRViewControllerExtension"
-  s.version      = "3.1.0"
+  s.version      = "3.1.1"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
 
   # This description is used to generate tags and improve search results.
@@ -52,7 +52,7 @@ A lightweight UIViewController category extension for UINavigationBar appearance
   #
 
   s.author             = { "罗亮富(Roen)" => "zxllf23@163.com" }
-  s.social_media_url   = "https://twitter.com/RoenLuo"
+ # s.social_media_url   = "https://twitter.com/RoenLuo"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -60,7 +60,7 @@ A lightweight UIViewController category extension for UINavigationBar appearance
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '11.0'
 
   #  When using multiple platforms
   # s.ios.deployment_target = "5.0"
