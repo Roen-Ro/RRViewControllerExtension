@@ -20,7 +20,7 @@ static int sCreatedCount;
 
 @implementation DEMO_normalMemoryLeakViewController
 
-+(void)initialize
++(void)load
 {
     if(!sVcMemLeakDebugArray)
         sVcMemLeakDebugArray = [NSMutableArray array];

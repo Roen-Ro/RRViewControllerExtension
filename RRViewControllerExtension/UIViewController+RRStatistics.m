@@ -270,6 +270,9 @@ __weak UIViewController *sRRStatCurrentViewController; //当前正在统计的VC
                          @"UISystemKeyboardDockController",
                          @"UINavigationController",
                          @"UITabBarController",
+                         @"UICompatibilityInputViewController",
+                         @"UITableViewController",
+                         @"UISearchController",
                          @"UIPredictionViewController"];
     for(NSString *s in classes) {
 //        Class cls = NSClassFromString(s);

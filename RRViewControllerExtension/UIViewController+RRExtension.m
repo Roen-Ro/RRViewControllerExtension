@@ -25,7 +25,9 @@ __weak UIView *sMemleakWarningView;
 #endif
 
 @implementation UIViewController (RRExtension)
-+ (void)initialize
+
+//2022.09.14 move from +(void)initialize since ios16
++ (void)load
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
