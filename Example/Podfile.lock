@@ -1,0 +1,16 @@
+PODS:
+  - RRViewControllerExtension (3.1.1)
+
+DEPENDENCIES:
+  - RRViewControllerExtension (from `../`)
+
+EXTERNAL SOURCES:
+  RRViewControllerExtension:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RRViewControllerExtension: ab91004b43f80c57afdc03d285c2297aaa24b4a4
+
+PODFILE CHECKSUM: 8f554c242292946d4fca7f60dcb8c4230a4f8777
+
+COCOAPODS: 1.10.2

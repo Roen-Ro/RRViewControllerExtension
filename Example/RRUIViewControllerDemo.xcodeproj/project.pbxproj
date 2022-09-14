@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86AFBA26984FF871E02DF6F2 /* Pods_RRUIViewControllerDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1993F6F5B4C487C44BD6CA56 /* Pods_RRUIViewControllerDemo.framework */; };
 		9F73EAF62150ECCE0046B7D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F73EAF52150ECCE0046B7D2 /* AppDelegate.m */; };
 		9F73EAFE2150ECCE0046B7D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EAFD2150ECCE0046B7D2 /* Assets.xcassets */; };
 		9F73EB012150ECCE0046B7D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F73EAFF2150ECCE0046B7D2 /* LaunchScreen.storyboard */; };
@@ -22,15 +23,14 @@
 		9FEF4CC92150F4B8009292EC /* DynamicConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC72150F4B8009292EC /* DynamicConfigViewController.m */; };
 		9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEF4CC82150F4B8009292EC /* DynamicConfigViewController.xib */; };
 		9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A2321536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib */; };
-		9FF94A4A2154B76200FC8F22 /* UINavigationController+RRSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */; };
-		9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */; };
-		9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */; };
 		9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */; };
 		B15E7EF9277995800065BF50 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B15E7EF8277995800065BF50 /* StatisticsViewController.m */; };
-		B1E324CB2774464F002AD518 /* UIViewController+RRStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = B1E324CA2774464F002AD518 /* UIViewController+RRStatistics.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F6EE04C246680CEDFC15A5F /* Pods-RRUIViewControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RRUIViewControllerDemo.debug.xcconfig"; path = "Target Support Files/Pods-RRUIViewControllerDemo/Pods-RRUIViewControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		1993F6F5B4C487C44BD6CA56 /* Pods_RRUIViewControllerDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RRUIViewControllerDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2024C47B10E3248B9B016B4E /* Pods-RRUIViewControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RRUIViewControllerDemo.release.xcconfig"; path = "Target Support Files/Pods-RRUIViewControllerDemo/Pods-RRUIViewControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		9F73EAF12150ECCE0046B7D2 /* RRUIViewControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RRUIViewControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F73EAF42150ECCE0046B7D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9F73EAF52150ECCE0046B7D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,19 +56,10 @@
 		9FEF4CC72150F4B8009292EC /* DynamicConfigViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicConfigViewController.m; sourceTree = "<group>"; };
 		9FEF4CC82150F4B8009292EC /* DynamicConfigViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DynamicConfigViewController.xib; sourceTree = "<group>"; };
 		9FF94A2321536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DEMO_normalMemoryLeakViewController.xib; sourceTree = "<group>"; };
-		9FF94A432154B76200FC8F22 /* RRViewControllerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRViewControllerExtension.h; sourceTree = "<group>"; };
-		9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+RRSet.h"; sourceTree = "<group>"; };
-		9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+RRSet.m"; sourceTree = "<group>"; };
-		9FF94A462154B76200FC8F22 /* UIViewController+RRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RRExtension.h"; sourceTree = "<group>"; };
-		9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RRExtension.m"; sourceTree = "<group>"; };
-		9FF94A4C2154B77B00FC8F22 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RRViewControllerExtension.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9FF94A542154FC9F00FC8F22 /* SwitchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchableViewController.h; sourceTree = "<group>"; };
 		9FF94A552154FC9F00FC8F22 /* SwitchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchableViewController.m; sourceTree = "<group>"; };
 		B15E7EF7277995800065BF50 /* StatisticsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		B15E7EF8277995800065BF50 /* StatisticsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
-		B1E324C92774464F002AD518 /* UIViewController+RRStatistics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RRStatistics.h"; sourceTree = "<group>"; };
-		B1E324CA2774464F002AD518 /* UIViewController+RRStatistics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RRStatistics.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,20 +67,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86AFBA26984FF871E02DF6F2 /* Pods_RRUIViewControllerDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3656CAD71D3AA9F7BED9306F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F6EE04C246680CEDFC15A5F /* Pods-RRUIViewControllerDemo.debug.xcconfig */,
+				2024C47B10E3248B9B016B4E /* Pods-RRUIViewControllerDemo.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9F73EAE82150ECCE0046B7D2 = {
 			isa = PBXGroup;
 			children = (
-				9FF94A4E2154C8AD00FC8F22 /* RRViewControllerExtension.podspec */,
-				9FF94A4C2154B77B00FC8F22 /* README.md */,
-				9FF94A3F2154B76200FC8F22 /* RRViewControllerExtension */,
 				9F73EAF32150ECCE0046B7D2 /* RRUIViewControllerDemo */,
 				9F73EAF22150ECCE0046B7D2 /* Products */,
+				3656CAD71D3AA9F7BED9306F /* Pods */,
+				BB4F73D6F4BBBA4967D3CCA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,18 +160,12 @@
 			path = commView;
 			sourceTree = "<group>";
 		};
-		9FF94A3F2154B76200FC8F22 /* RRViewControllerExtension */ = {
+		BB4F73D6F4BBBA4967D3CCA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9FF94A432154B76200FC8F22 /* RRViewControllerExtension.h */,
-				9FF94A442154B76200FC8F22 /* UINavigationController+RRSet.h */,
-				9FF94A452154B76200FC8F22 /* UINavigationController+RRSet.m */,
-				9FF94A462154B76200FC8F22 /* UIViewController+RRExtension.h */,
-				9FF94A472154B76200FC8F22 /* UIViewController+RRExtension.m */,
-				B1E324C92774464F002AD518 /* UIViewController+RRStatistics.h */,
-				B1E324CA2774464F002AD518 /* UIViewController+RRStatistics.m */,
+				1993F6F5B4C487C44BD6CA56 /* Pods_RRUIViewControllerDemo.framework */,
 			);
-			path = RRViewControllerExtension;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9F73EB072150ECCE0046B7D2 /* Build configuration list for PBXNativeTarget "RRUIViewControllerDemo" */;
 			buildPhases = (
+				B0F6DDD5C99AF36CBD517A3F /* [CP] Check Pods Manifest.lock */,
 				9F73EAED2150ECCE0046B7D2 /* Sources */,
 				9F73EAEE2150ECCE0046B7D2 /* Frameworks */,
 				9F73EAEF2150ECCE0046B7D2 /* Resources */,
+				97E28A321ACE9DA0A395BC81 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -238,19 +235,60 @@
 				9FEF4CC52150F164009292EC /* CommView.xib in Resources */,
 				9FEF4CCA2150F4B8009292EC /* DynamicConfigViewController.xib in Resources */,
 				9FF94A2421536CFA00FC8F22 /* DEMO_normalMemoryLeakViewController.xib in Resources */,
-				9FF94A4F2154C8AD00FC8F22 /* RRViewControllerExtension.podspec in Resources */,
 				9F73EAFE2150ECCE0046B7D2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		97E28A321ACE9DA0A395BC81 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RRUIViewControllerDemo/Pods-RRUIViewControllerDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RRViewControllerExtension/RRViewControllerExtension.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RRViewControllerExtension.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RRUIViewControllerDemo/Pods-RRUIViewControllerDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0F6DDD5C99AF36CBD517A3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RRUIViewControllerDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9F73EAED2150ECCE0046B7D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FF94A4B2154B76200FC8F22 /* UIViewController+RRExtension.m in Sources */,
 				9FEF4CC32150F135009292EC /* CommView.m in Sources */,
 				9FF94A562154FCA000FC8F22 /* SwitchableViewController.m in Sources */,
 				9F73EB042150ECCE0046B7D2 /* main.m in Sources */,
@@ -260,8 +298,6 @@
 				9F73EB34215100930046B7D2 /* DEMO_ImageNaviBarViewController.m in Sources */,
 				B15E7EF9277995800065BF50 /* StatisticsViewController.m in Sources */,
 				9FEF4CC92150F4B8009292EC /* DynamicConfigViewController.m in Sources */,
-				B1E324CB2774464F002AD518 /* UIViewController+RRStatistics.m in Sources */,
-				9FF94A4A2154B76200FC8F22 /* UINavigationController+RRSet.m in Sources */,
 				9F73EB2B2150FFA50046B7D2 /* DEMO_HiddenNaviBarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,12 +425,13 @@
 		};
 		9F73EB082150ECCE0046B7D2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F6EE04C246680CEDFC15A5F /* Pods-RRUIViewControllerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6575PQUVHG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RRUIViewControllerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.2blulu.rrvc.demo.RRUIViewControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -404,12 +441,13 @@
 		};
 		9F73EB092150ECCE0046B7D2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2024C47B10E3248B9B016B4E /* Pods-RRUIViewControllerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6575PQUVHG;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = RRUIViewControllerDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.2blulu.rrvc.demo.RRUIViewControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
