@@ -291,10 +291,11 @@ static UIImage *sNavigationBarTransparentImage;
     [self mob_navigationTransitionView:obj1 didEndTransition:b fromView:v1 toView:v2];
 
     void (^ cmpltBlock)(void) = objc_getAssociatedObject(self, kNavigationCompletionBlockKey);
-    if(cmpltBlock)
+    if(cmpltBlock) {
+        [self setCompletionBlock:nil]; //reset the block before execution
         cmpltBlock();
+    }
 
-    [self setCompletionBlock:nil];
 }
 
 //-(void)setApplyGlobalConfig:(BOOL)applyGlobalConfig

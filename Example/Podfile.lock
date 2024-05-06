@@ -1,5 +1,5 @@
 PODS:
-  - RRViewControllerExtension (3.1.1)
+  - RRViewControllerExtension (3.1.2)
 
 DEPENDENCIES:
   - RRViewControllerExtension (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  RRViewControllerExtension: ab91004b43f80c57afdc03d285c2297aaa24b4a4
+  RRViewControllerExtension: c71135c9004a9d93daff0bf12dc0ce7e6c33a3fa
 
 PODFILE CHECKSUM: 8f554c242292946d4fca7f60dcb8c4230a4f8777
 
