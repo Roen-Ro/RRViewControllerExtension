@@ -19,6 +19,8 @@ Pod::Spec.new do |s|
   s.version      = "3.1.6"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'GENERATE_INFOPLIST_FILE' => 'YES' } #` DEFINES_MODULE` 设置为 `YES` 可确保你的库会生成一个模块，这对于 Swift 和 Objective-C 互操作很重要。
+  s.user_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'GENERATE_INFOPLIST_FILE' => 'YES' }
+  # s.ios.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.roen.RRViewControllerExtension' }
 
   
   # This description is used to generate tags and improve search results.
