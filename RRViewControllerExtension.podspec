@@ -16,11 +16,15 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRViewControllerExtension"
-  s.version      = "3.1.6"
+  s.version      = "3.1.7"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'GENERATE_INFOPLIST_FILE' => 'YES' } #` DEFINES_MODULE` 设置为 `YES` 可确保你的库会生成一个模块，这对于 Swift 和 Objective-C 互操作很重要。
-  s.user_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'GENERATE_INFOPLIST_FILE' => 'YES' }
-  # s.ios.pod_target_xcconfig = { 'PRODUCT_BUNDLE_IDENTIFIER' => 'com.roen.RRViewControllerExtension' }
+  
+  #说明:注释掉下面两项配置，在用 XCode15.0.1编译的时候，无法通过pod提交验证；并报错 "error: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically. "
+  #但是！如果加上这两项配置，在打包后提交到App Store又会出现验证错误："The bundle 'xxx/RRViewControllerExtension.framework' is missing plist key. The Info.plist file is missing the required key: CFBundleShortVersionString. "
+  #解决方法是取消这两项配置，然后把 1、代码下载到本地，将pod改成本地引用，2、或者将pod源指向github
+#  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'GENERATE_INFOPLIST_FILE' => 'NO' }
+#  s.user_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'GENERATE_INFOPLIST_FILE' => 'NO' }
+
 
   
   # This description is used to generate tags and improve search results.
