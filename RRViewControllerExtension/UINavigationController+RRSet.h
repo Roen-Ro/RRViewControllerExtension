@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)reloadBarTitleTextAttributes:(nullable NSDictionary<NSAttributedStringKey, id>*)titleTextAttributes;
 @end
 
-
+typedef void (^TransitionCompletionCallBackType)(void);
 
 @interface UINavigationController (RRSet)
 
@@ -35,17 +35,17 @@ NS_ASSUME_NONNULL_BEGIN
 // pop/push with completion block call backs
 - (void)pushViewController:(UIViewController *)viewController
                   animated:(BOOL)animated
-           completionBlock:(void (^ __nullable)(void))completion;
+           completionBlock:(nullable TransitionCompletionCallBackType)completion;
 
 - (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated
-                                         completionBlock:(void (^ __nullable)(void))completion;
+                                         completionBlock:(nullable TransitionCompletionCallBackType)completion;
 
 - (nullable NSArray<__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController
                                                               animated:(BOOL)animated
-                                                       completionBlock:(void (^ __nullable)(void))completion;
+                                                       completionBlock:(nullable TransitionCompletionCallBackType)completion;
 
 - (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated
-                                                                   completionBlock:(void (^ __nullable)(void))completion;
+                                                                   completionBlock:(nullable TransitionCompletionCallBackType)completion;
 
 @end
 

@@ -50,7 +50,6 @@ typedef void (^RRViewControllerLifecycleHookBlock) (UIViewController *viewContro
 
 @property (nonatomic,readonly) BOOL isViewAppearing;
 
-
 /**
  获取当前 viewController 所处的的生命周期阶段（也即 viewDidLoad/viewWillApear/viewDidAppear/viewWillDisappear/viewDidDisappear）
  PS 在原有方法调用结束后才会赋值
@@ -135,6 +134,11 @@ in debug mode, defalut is NO for classes returned from +memoryLeakDetectionExclu
 
 
 
+/**
+ Debug purpose class methods
+ */
++(NSString *)logStringFor:(UIViewController *)viewController;//
++(NSString *)stackStringFor:(NSArray<UIViewController *> *)viewControllers;
 
 @end
 

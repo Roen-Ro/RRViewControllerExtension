@@ -24,6 +24,7 @@ static NSMutableSet *sVcLeakDetectionDefaultExceptions;
 __weak UIView *sMemleakWarningView;
 #endif
 
+
 @implementation UIViewController (RRExtension)
 
 //2022.09.14 move from +(void)initialize since ios16
@@ -639,6 +640,27 @@ static char kAssociatedObjectKey_visibleState;
 #else
     return nil;
 #endif
+}
+
+// MARK: - Other class methods
++(NSString *)stackStringFor:(NSArray<UIViewController *> *)viewControllers {
+    NSMutableString *retStr = [NSMutableString stringWithCapacity:1024];
+    [retStr appendString:@"[\n"];
+    int i = 0;
+    for(UIViewController *vc in viewControllers) {
+        [retStr appendString:[self logStringFor:vc]];
+        if(i < viewControllers.count - 1) {
+            [retStr appendString:@"\n"];
+        }
+        i++;
+    }
+    [retStr appendString:@"\n]"];
+    return retStr.copy;
+}
+
+
++(NSString *)logStringFor:(UIViewController *)viewController {
+    return [NSString stringWithFormat:@"%@.%@<%p>",NSStringFromClass(viewController.class), viewController.title,viewController];;
 }
 
 @end

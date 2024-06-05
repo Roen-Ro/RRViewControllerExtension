@@ -7,6 +7,7 @@
 
 #import "UINavigationController+RRSet.h"
 #import <objc/runtime.h>
+#import "RRViewControllerExtension.h"
 
 #pragma mark - UINavigationController (_SetupProperty)
 UIKIT_EXTERN API_AVAILABLE(ios(13.0), tvos(13.0)) //NS_SWIFT_UI_ACTOR
@@ -50,6 +51,8 @@ static char kAssociatedObjectKey_Transparent_SetupProperty;
 }
 
 @end
+
+
 #pragma mark - UINavigationBar+RRSet
 @implementation UINavigationBar (RRSet)
 -(void)reloadBarBackgroundImage:(nullable UIImage *)img {
@@ -128,7 +131,8 @@ static char kAssociatedObjectKey_Transparent_SetupProperty;
 }
 @end
 
-#define kNavigationCompletionBlockKey @"completionBlk"
+static char kNavigationCompletionBlockKey;
+static char kNavigationBlockBckupKey;
 static UIImage *sNavigationBarTransparentImage;
 
 #pragma mark - UINavigationController + RRSet
@@ -282,17 +286,74 @@ static UIImage *sNavigationBarTransparentImage;
 
 #pragma mark- push/pop completion block
 
--(void)setCompletionBlock:(void (^ __nullable)(void))completion
-{
-    objc_setAssociatedObject(self, kNavigationCompletionBlockKey, completion, OBJC_ASSOCIATION_COPY_NONATOMIC);
+// ---- back up blocks
+#warning 2024.05.30 Notted: On very few devices, the -mob_navigationTransitionView:didEndTransition:fromView:toView method is not called, so a backup of all blocks is made here and the execution is delayed to ensure that the blocks will be executed.\
+在极少数设备上出现不会调用-mob_navigationTransitionView:didEndTransition:fromView:toView 这个方法，所以这里对所有的block做一份备份并延迟执行，以确保block会被执行。
+-(void)backUpCompletionBlock:(nullable TransitionCompletionCallBackType)completion transitionAnimate:(BOOL)animated {
+    NSMutableArray *mArray = objc_getAssociatedObject(self, &kNavigationBlockBckupKey);
+    if(mArray == nil) {
+        mArray = [NSMutableArray arrayWithCapacity:4];
+        objc_setAssociatedObject(self, &kNavigationBlockBckupKey, mArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    } else {
+       
+        // NO NEED?
+//        for (TransitionCompletionCallBackType blk in mArray) {
+//            blk();
+//        }
+//        [mArray removeAllObjects];
+    }
+    
+    if (completion) {
+        
+        [mArray addObject:completion];
+        
+        //注意：push/pop执行完成的时间，跟业务有关，有的时候在主线程做太多的逻辑处理，会导致这个时间更长，所以这里设置时间稍微长一点会合理，（毕竟是少数设备才会出现要延迟执行的情况，所以时间设置要大一点，否则正常设备也受影响)
+        NSTimeInterval second = 0.3;
+        if(animated)
+            second = 1.0;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(second * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if ([mArray containsObject:completion]) {
+                completion();
+                [mArray removeObject:completion];
+            }
+        });
+    }
 }
+
+-(void)removeBackedUpBlock:(_Nullable TransitionCompletionCallBackType)completion {
+    if(!completion)
+        return;
+    NSMutableArray *mArray = objc_getAssociatedObject(self, &kNavigationBlockBckupKey);
+#if 0
+    [mArray removeObject:completion];
+#else
+    NSUInteger idx = [mArray indexOfObject:completion];
+    if(idx != NSNotFound) {
+        [mArray removeObjectAtIndex:idx];
+    }
+#endif
+}
+
+-(void)setCompletionBlock:(nullable TransitionCompletionCallBackType)completion
+{
+    objc_setAssociatedObject(self, &kNavigationCompletionBlockKey, completion, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+// ---- end for back up blocks
+
+
+//Note: 2024.05.30 This method can't grantee to be called On very few devices devices; so i added block backup and excute later mechanism \
+在极少数设备上（跟系统版本没有关系）出现了不会调用这个方法的情况， 所以我新增了一个block的备份延迟执行的机制
 -(void)mob_navigationTransitionView:(id)obj1 didEndTransition:(long)b fromView:(id)v1 toView:(id)v2
 {
     [self mob_navigationTransitionView:obj1 didEndTransition:b fromView:v1 toView:v2];
 
-    void (^ cmpltBlock)(void) = objc_getAssociatedObject(self, kNavigationCompletionBlockKey);
+    TransitionCompletionCallBackType cmpltBlock = objc_getAssociatedObject(self, &kNavigationCompletionBlockKey);
+    
+    
     if(cmpltBlock) {
         [self setCompletionBlock:nil]; //reset the block before execution
+        [self removeBackedUpBlock:cmpltBlock];
         cmpltBlock();
     }
 
@@ -309,30 +370,37 @@ static UIImage *sNavigationBarTransparentImage;
 //    return boolNum.boolValue;
 //}
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^ __nullable)(void))completion
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(nullable TransitionCompletionCallBackType)completion
 {
+    
     [self setCompletionBlock:completion];
     [self pushViewController:viewController animated:animated];
+    [self backUpCompletionBlock:completion transitionAnimate:animated];
 }
 
-- (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated completionBlock:(void (^ __nullable)(void))completion
+- (nullable UIViewController *)popViewControllerAnimated:(BOOL)animated completionBlock:(nullable TransitionCompletionCallBackType)completion
 {
     [self setCompletionBlock:completion];
-    return [self popViewControllerAnimated:animated];
+    UIViewController *vc =  [self popViewControllerAnimated:animated];
+    [self backUpCompletionBlock:completion transitionAnimate:animated];
+    return vc;
 }
 
-- (nullable NSArray<__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(void (^ __nullable)(void))completion
+- (nullable NSArray<__kindof UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated completionBlock:(nullable TransitionCompletionCallBackType)completion
 {
     [self setCompletionBlock:completion];
-    return [self popToViewController:viewController animated:animated];
+    NSArray<__kindof UIViewController *> *vcs = [self popToViewController:viewController animated:animated];
+    [self backUpCompletionBlock:completion transitionAnimate:animated];
+    return vcs;
 }
 
-- (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated completionBlock:(void (^ __nullable)(void))completion
+- (nullable NSArray<__kindof UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated completionBlock:(nullable TransitionCompletionCallBackType)completion
 {
     [self setCompletionBlock:completion];
-    return [self popToRootViewControllerAnimated:animated];
+    NSArray<__kindof UIViewController *> *vcs = [self popToRootViewControllerAnimated:animated];
+    [self backUpCompletionBlock:completion transitionAnimate:animated];
+    return vcs;
 }
-
 
 
 

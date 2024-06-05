@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "RRViewControllerExtension"
-  s.version      = "3.1.7"
+  s.version      = "3.2.0"
   s.summary      = "UINavigationBar appearance management, memory leak detection, convenient UIViewController property and methods."
   
   #说明:注释掉下面两项配置，在用 XCode15.0.1编译的时候，无法通过pod提交验证；并报错 "error: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically. "
